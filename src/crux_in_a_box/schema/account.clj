@@ -52,9 +52,9 @@
   []
   (let [fixture (edn/read-string (slurp "resources/fixtures/accounts.edn"))]
     (->> fixture
-      (map #(create-account %))
-      (filter #(:status %))
-      (mapv #(:value %)))))
+         (map #(create-account %))
+         (filter #(:status %))
+         (mapv #(:value %)))))
 
 (comment
   "Some repl testing code"
