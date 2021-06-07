@@ -1,0 +1,1046 @@
+[{:account/id "0"
+  :account/name   "Activa" :account/type :ast}
+ {:account/id "00"
+  :account/name   "Vaste activa" :account/type :ast}
+ {:account/id "000"
+  :account/name   "Immateriële vaste activa" :account/type :ast}
+ {:account/id "0001"
+  :account/name   "Kosten van oprichting en van uitgifte van aandelen" :account/type :ast}
+ {:account/id "00011"
+  :account/name   "Aanschaf kosten van oprichting en van uitgifte van aandelen" :account/type :ast}
+ {:account/id "00012"
+  :account/name   "Afschrijving kosten van oprichting en uitgifte van aandelen" :account/type :ast}
+ {:account/id "00013"
+  :account/name   "Herwaardering kosten van oprichting en van uitgifte aandelen" :account/type :ast}
+ {:account/id "0002"
+  :account/name   "Kosten van onderzoek en ontwikkeling" :account/type :ast}
+ {:account/id "00021"
+  :account/name   "Aanschaf onderzoek en ontwikkeling" :account/type :ast}
+ {:account/id "00022"
+  :account/name   "Afschrijving kosten onderzoek en ontwikkeling" :account/type :ast}
+ {:account/id "00023"
+  :account/name   "Herwaardering kosten onderzoek en ontwikkeling" :account/type :ast}
+ {:account/id "0003"
+  :account/name   "Software" :account/type :ast}
+ {:account/id "00031"
+  :account/name   "Aanschaf software" :account/type :ast}
+ {:account/id "00032"
+  :account/name   "Afschrijving software" :account/type :ast}
+ {:account/id "00033"
+  :account/name   "Herwaardering software" :account/type :ast}
+ {:account/id "0005"
+  :account/name   "Concessies, vergunningen en intellectuele eigendommen" :account/type :ast}
+ {:account/id "00051"
+  :account/name   "Aanschaf concessies, vergunningen en intellectuele eigendommen" :account/type :ast}
+ {:account/id "00052"
+  :account/name   "Afschrijvingen concessies, vergunningen en intellectuele eigendommen" :account/type :ast}
+ {:account/id "00053"
+  :account/name   "Herwaardering concessies, vergunningen en intellectuele eigendommen" :account/type :ast}
+ {:account/id "0006"
+  :account/name   "Goodwill" :account/type :ast}
+ {:account/id "00061"
+  :account/name   "Aanschaf goodwill" :account/type :ast}
+ {:account/id "00062"
+  :account/name   "Afschrijving goodwill" :account/type :ast}
+ {:account/id "00063"
+  :account/name   "Herwaardering goodwill" :account/type :ast}
+ {:account/id "0009"
+  :account/name   "Overige immateriële vaste activa" :account/type :ast}
+ {:account/id "00091"
+  :account/name   "Aanschaf overige immateriële vaste activa" :account/type :ast}
+ {:account/id "00092"
+  :account/name   "Afschrijving overige immateriële vaste activa" :account/type :ast}
+ {:account/id "00093"
+  :account/name   "Herwaardering overige immateriële vaste activa" :account/type :ast}
+ {:account/id "001"
+  :account/name   "Materiële vaste activa" :account/type :ast}
+ {:account/id "0010"
+  :account/name   "Terreinen" :account/type :ast}
+ {:account/id "00110"
+  :account/name   "Aanschaf terreinen" :account/type :ast}
+ {:account/id "00120"
+  :account/name   "Afschrijving terreinen" :account/type :ast}
+ {:account/id "00130"
+  :account/name   "Herwaardering Terreinen" :account/type :ast}
+ {:account/id "0020"
+  :account/name   "Bedrijfsgebouwen" :account/type :ast}
+ {:account/id "00210"
+  :account/name   "Aanschaf bedrijfsgebouwen" :account/type :ast}
+ {:account/id "00220"
+  :account/name   "Afschrijving bedrijfsgebouwen" :account/type :ast}
+ {:account/id "00230"
+  :account/name   "Herwaardering bedrijfsgebouwen" :account/type :ast}
+ {:account/id "0030"
+  :account/name   "Verbouwingen" :account/type :ast}
+ {:account/id "00310"
+  :account/name   "Aanschaf verbouwingen" :account/type :ast}
+ {:account/id "00320"
+  :account/name   "Afschrijving verbouwingen" :account/type :ast}
+ {:account/id "00330"
+  :account/name   "Herwaardering verbouwingen" :account/type :ast}
+ {:account/id "0040"
+  :account/name   "Machines en installaties" :account/type :ast}
+ {:account/id "00410"
+  :account/name   "Aanschaf machines en installaties" :account/type :ast}
+ {:account/id "00420"
+  :account/name   "Afschrijving machines en installaties" :account/type :ast}
+ {:account/id "00430"
+  :account/name   "Herwaardering machines en installaties" :account/type :ast}
+ {:account/id "0050"
+  :account/name   "Vervoermiddelen" :account/type :ast}
+ {:account/id "00510"
+  :account/name   "Aanschaf vervoermiddelen" :account/type :ast}
+ {:account/id "00520"
+  :account/name   "Afschrijving vervoermiddelen" :account/type :ast}
+ {:account/id "00530"
+  :account/name   "Herwaardering vervoermiddelen" :account/type :ast}
+ {:account/id "0060"
+  :account/name   "Inventarissen" :account/type :ast}
+ {:account/id "00610"
+  :account/name   "Aanschaf inventarissen" :account/type :ast}
+ {:account/id "00620"
+  :account/name   "Afschrijving inventarissen" :account/type :ast}
+ {:account/id "00630"
+  :account/name   "Herwaardering inventarissen" :account/type :ast}
+ {:account/id "0090"
+  :account/name   "Overige materiële vaste activa" :account/type :ast}
+ {:account/id "00910"
+  :account/name   "Aanschaf overige materiële vaste activa" :account/type :ast}
+ {:account/id "00920"
+  :account/name   "Afschrijving overige materiële vaste activa" :account/type :ast}
+ {:account/id "00930"
+  :account/name   "Herwaardering overige materiële vaste activa" :account/type :ast}
+ {:account/id "010"
+  :account/name   "Financiële vaste activa" :account/type :ast}
+ {:account/id "0101"
+  :account/name   "Deelnemingen in groepsmaatschappijen" :account/type :ast}
+ {:account/id "01010"
+  :account/name   "Deelneming in groepsmaatschappijen 1" :account/type :ast}
+ {:account/id "0121"
+  :account/name   "Andere deelnemingen" :account/type :ast}
+ {:account/id "01210"
+  :account/name   "Andere deelneming 1" :account/type :ast}
+ {:account/id "0141"
+  :account/name   "Vorderingen op groepsmaatschappijen" :account/type :ast}
+ {:account/id "01410"
+  :account/name   "Vorderingen op groepsmaatschappij 1 (langlopend)" :account/type :ast}
+ {:account/id "0151"
+  :account/name   "Vorderingen op participanten en op maatschappijen waarin wordt deelgenomen" :account/type :ast}
+ {:account/id "01510"
+  :account/name   "Vordering op participant 1 (langlopend)" :account/type :ast}
+ {:account/id "0171"
+  :account/name   "Latente belastingvorderingen" :account/type :ast}
+ {:account/id "01710"
+  :account/name   "Latente belastingvorderingen 1 (langlopend)" :account/type :ast}
+ {:account/id "0181"
+  :account/name   "Overige effecten" :account/type :ast}
+ {:account/id "01810"
+  :account/name   "Overige effecten 1" :account/type :ast}
+ {:account/id "0191"
+  :account/name   "Overige vorderingen" :account/type :ast}
+ {:account/id "01910"
+  :account/name   "Vorderingen op bestuurders (langlopend)" :account/type :ast}
+ {:account/id "01990"
+  :account/name   "Overige vorderingen (langlopend)" :account/type :ast}
+ {:account/id "01"
+  :account/name   "Vlottende activa" :account/type :ast}
+ {:account/id "030"
+  :account/name   "Voorraden en onderhanden werk" :account/type :ast}
+ {:account/id "0300"
+  :account/name   "Grond- en hulpstoffen" :account/type :ast}
+ {:account/id "30100"
+  :account/name   "Voorraad grond- en hulpstoffen" :account/type :ast}
+ {:account/id "31100"
+  :account/name   "Voorraad halffabrikaten" :account/type :ast}
+ {:account/id "0320"
+  :account/name   "Onderhanden werk" :account/type :ast}
+ {:account/id "32100"
+  :account/name   "Voorraad onderhanden werken" :account/type :ast}
+ {:account/id "32200"
+  :account/name   "Voorziening verliezen onderhanden werken" :account/type :ast}
+ {:account/id "32300"
+  :account/name   "Gefactureerde termijnen onderhanden werken" :account/type :ast}
+ {:account/id "0330"
+  :account/name   "Gereed product en handelsgoederen" :account/type :ast}
+ {:account/id "33100"
+  :account/name   "Voorraad gereed product" :account/type :ast}
+ {:account/id "34100"
+  :account/name   "Voorraad handelsgoederen" :account/type :ast}
+ {:account/id "34200"
+  :account/name   "Voorziening incourante handelsgoederen" :account/type :ast}
+ {:account/id "0350"
+  :account/name   "Vooruitbetaald op voorraden" :account/type :ast}
+ {:account/id "35100"
+  :account/name   "Vooruitbetaald op voorraden" :account/type :ast}
+ {:account/id "0370"
+  :account/name   "Overige voorraden - emballage" :account/type :ast}
+ {:account/id "37100"
+  :account/name   "Voorraad verpakkingsmateriaal" :account/type :ast}
+ {:account/id "039"
+  :account/name   "Onderhanden projecten in opdracht van derden" :account/type :ast}
+ {:account/id "39100"
+  :account/name   "Onderhanden projecten in opdracht van derden, opbrengsten uit onderhanden projecten verwerkt in de w" :account/type :ast}
+ {:account/id "120"
+  :account/name   "Vorderingen" :account/type :ast}
+ {:account/id "1200"
+  :account/name   "Debiteuren" :account/type :ast}
+ {:account/id "12010"
+  :account/name   "Debiteuren" :account/type :ast}
+ {:account/id "12030"
+  :account/name   "Voorziening dubieuze debiteuren" :account/type :ast}
+ {:account/id "1300"
+  :account/name   "Vorderingen op verbonden maatschappijen (kortlopend)" :account/type :ast}
+ {:account/id "13100"
+  :account/name   "Vordering op groepsmaatschappij 1" :account/type :ast}
+ {:account/id "14100"
+  :account/name   "Vordering op participant 1" :account/type :ast}
+ {:account/id "1500"
+  :account/name   "Vorderingen belastingen en premies sociale verzekeringen" :account/type :ast}
+ {:account/id "1501"
+  :account/name   "BTW te vorderen" :account/type :ast}
+ {:account/id "23100"
+  :account/name   "Voorbelasting (BTW inkoopfacturen)" :account/type :ast}
+ {:account/id "23150"
+  :account/name   "BTW te ontvangen op aangifte" :account/type :ast}
+ {:account/id "1511"
+  :account/name   "Loonheffing" :account/type :ast}
+ {:account/id "15110"
+  :account/name   "Te vorderen loonheffing" :account/type :ast}
+ {:account/id "1521"
+  :account/name   "Bedrijfsvereniging" :account/type :ast}
+ {:account/id "15210"
+  :account/name   "Te vorderen sociale lasten" :account/type :ast}
+ {:account/id "1531"
+  :account/name   "Vennootschapsbelasting" :account/type :ast}
+ {:account/id "15310"
+  :account/name   "Te vorderen VPB" :account/type :ast}
+ {:account/id "1600"
+  :account/name   "Overige vorderingen" :account/type :ast}
+ {:account/id "15610"
+  :account/name   "Rekening-courant Thijs Creemers" :account/type :ast}
+ {:account/id "15900"
+  :account/name   "Vorderingen pensioenen" :account/type :ast}
+ {:account/id "16900"
+  :account/name   "Te factureren onkosten van derden" :account/type :ast}
+ {:account/id "16910"
+  :account/name   "Te factureren onkosten van medewerkers" :account/type :ast}
+ {:account/id "16990"
+  :account/name   "Overige vorderingen" :account/type :ast}
+ {:account/id "1700"
+  :account/name   "Overlopende activa" :account/type :ast}
+ {:account/id "17100"
+  :account/name   "Vooruit betaalde inkoopfacturen" :account/type :ast}
+ {:account/id "17300"
+  :account/name   "Nog te factureren omzet" :account/type :ast}
+ {:account/id "17400"
+  :account/name   "Te ontvangen rente" :account/type :ast}
+ {:account/id "17500"
+  :account/name   "Nog te boeken uitgaven" :account/type :ast}
+ {:account/id "17900"
+  :account/name   "Overige overlopende activa" :account/type :ast}
+ {:account/id "170"
+  :account/name   "Effecten" :account/type :ast}
+ {:account/id "09000"
+  :account/name   "Effecten 1 (Kortlopend)" :account/type :ast}
+ {:account/id "09100"
+  :account/name   "Effecten 2 (Kortlopend)" :account/type :ast}
+ {:account/id "180"
+  :account/name   "Liquide middelen" :account/type :ast}
+ {:account/id "1800"
+  :account/name   "Kassen" :account/type :ast}
+ {:account/id "10010"
+  :account/name   "Kas" :account/type :ast}
+ {:account/id "1810"
+  :account/name   "Bankrekeningen" :account/type :ast}
+ {:account/id "11010"
+  :account/name   "Bankgroep 1 (voorbeeld ING)" :account/type :ast}
+ {:account/id "11011"
+  :account/name   "Rabobank 13.77.58.898" :account/type :ast}
+ {:account/id "11012"
+  :account/name   "Rabobank 12.41.10.576" :account/type :ast}
+ {:account/id "11013"
+  :account/name   "Bankrekening 3" :account/type :ast}
+ {:account/id "11014"
+  :account/name   "Bankrekening 4" :account/type :ast}
+ {:account/id "11015"
+  :account/name   "Bankrekening 5" :account/type :ast}
+ {:account/id "11020"
+  :account/name   "Bankgroep 2 (voorbeeld - ABNAMRO)" :account/type :ast}
+ {:account/id "11021"
+  :account/name   "Bankrekening 6" :account/type :ast}
+ {:account/id "11022"
+  :account/name   "Bankrekening 7" :account/type :ast}
+ {:account/id "11030"
+  :account/name   "Bankgroep 3 (voorbeeld - Rabobank)" :account/type :ast}
+ {:account/id "11031"
+  :account/name   "Bankrekening 8" :account/type :ast}
+ {:account/id "11032"
+  :account/name   "Bankrekening 9" :account/type :ast}
+ {:account/id "1820"
+  :account/name   "Kruisposten" :account/type :ast}
+ {:account/id "11910"
+  :account/name   "Kruisposten" :account/type :ast}
+ {:account/id "11920"
+  :account/name   "Ontvangen pin betalingen onderweg" :account/type :ast}
+ {:account/id "11950"
+  :account/name   "Betalingen onderweg" :account/type :ast}
+ {:account/id "11960"
+  :account/name   "Openstaande posten memoriaal" :account/type :ast}
+ {:account/id "199"
+  :account/name   "Tussenrekeningen Activa" :account/type :ast}
+ {:account/id "19100"
+  :account/name   "Nog te rubriceren uitgaven" :account/type :ast}
+ {:account/id "19200"
+  :account/name   "Verrekeningen" :account/type :ast}
+ {:account/id "KST"
+  :account/name   "Kosten" :account/type :cst}
+ {:account/id "10"
+  :account/name   "Inkoopwaarde van de omzet (handelsonderneming)" :account/type :cst}
+ {:account/id "70000"
+  :account/name   "Inkoop handelsgoederen" :account/type :cst}
+ {:account/id "11"
+  :account/name   "Kosten van grond- en hulpstoffen (productieonderneming)" :account/type :cst}
+ {:account/id "71000"
+  :account/name   "Inkoop van grond- en hulpstoffen" :account/type :cst}
+ {:account/id "72000"
+  :account/name   "Inkoop productiegoederen" :account/type :cst}
+ {:account/id "13"
+  :account/name   "Kosten uitbesteed werk en andere externe kosten (productieonderneming)" :account/type :cst}
+ {:account/id "73000"
+  :account/name   "Inkoop uitbesteed werk en andere externe inkoop" :account/type :cst}
+ {:account/id "74000"
+  :account/name   "Kosten personeel" :account/type :cst}
+ {:account/id "16"
+  :account/name   "Prijsverschillen - betalingskortingen" :account/type :cst}
+ {:account/id "76000"
+  :account/name   "Prijsverschillen bij inkoop" :account/type :cst}
+ {:account/id "77100"
+  :account/name   "Betalingskorting crediteuren" :account/type :cst}
+ {:account/id "19"
+  :account/name   "Privé-gebruik" :account/type :cst}
+ {:account/id "79000"
+  :account/name   "Privé-gebruik goederen" :account/type :cst}
+ {:account/id "79100"
+  :account/name   "Privé-gebruik diensten" :account/type :cst}
+ {:account/id "40"
+  :account/name   "Personeelskosten" :account/type :cst}
+ {:account/id "400"
+  :account/name   "Lonen en salarissen" :account/type :cst}
+ {:account/id "40100"
+  :account/name   "Salarissen" :account/type :cst}
+ {:account/id "40110"
+  :account/name   "Lonen" :account/type :cst}
+ {:account/id "40120"
+  :account/name   "Overwerk" :account/type :cst}
+ {:account/id "40125"
+  :account/name   "Onregelmatigheidstoeslag" :account/type :cst}
+ {:account/id "40130"
+  :account/name   "Tantièmes en provisie" :account/type :cst}
+ {:account/id "40150"
+  :account/name   "Vakantiegeld" :account/type :cst}
+ {:account/id "40155"
+  :account/name   "Vakantiedagen" :account/type :cst}
+ {:account/id "40160"
+  :account/name   "Lonen in natura" :account/type :cst}
+ {:account/id "40200"
+  :account/name   "Bezoldiging van bestuurders en gewezen bestuurders" :account/type :cst}
+ {:account/id "40400"
+  :account/name   "Ontslaguitkeringen" :account/type :cst}
+ {:account/id "40500"
+  :account/name   "Kosten aandelen(optie)regelingen" :account/type :cst}
+ {:account/id "40900"
+  :account/name   "Overige lonen en salarissen" :account/type :cst}
+ {:account/id "40950"
+  :account/name   "Doorberekende lonen en salarissen" :account/type :cst}
+ {:account/id "420"
+  :account/name   "Sociale lasten" :account/type :cst}
+ {:account/id "42100"
+  :account/name   "Premies sociale verzekeringen" :account/type :cst}
+ {:account/id "42200"
+  :account/name   "Bijdrage ziektekostenverzekering" :account/type :cst}
+ {:account/id "42300"
+  :account/name   "Overige premies" :account/type :cst}
+ {:account/id "42500"
+  :account/name   "Overige sociale fondsen" :account/type :cst}
+ {:account/id "42900"
+  :account/name   "Overige sociale lasten" :account/type :cst}
+ {:account/id "42950"
+  :account/name   "Doorberekende sociale lasten" :account/type :cst}
+ {:account/id "430"
+  :account/name   "Pensioenlasten" :account/type :cst}
+ {:account/id "43100"
+  :account/name   "Pensioenpremies" :account/type :cst}
+ {:account/id "43200"
+  :account/name   "Dotatie pensioenvoorziening directie" :account/type :cst}
+ {:account/id "43900"
+  :account/name   "Overige pensioenlasten" :account/type :cst}
+ {:account/id "43950"
+  :account/name   "Doorberekende pensioenlasten" :account/type :cst}
+ {:account/id "440"
+  :account/name   "Overige personeelskosten" :account/type :cst}
+ {:account/id "44010"
+  :account/name   "Uitzendkrachten" :account/type :cst}
+ {:account/id "44030"
+  :account/name   "Managementvergoeding" :account/type :cst}
+ {:account/id "44090"
+  :account/name   "Detacheringskosten" :account/type :cst}
+ {:account/id "44100"
+  :account/name   "Wervingskosten" :account/type :cst}
+ {:account/id "44200"
+  :account/name   "Kosten arbo-dienst" :account/type :cst}
+ {:account/id "44400"
+  :account/name   "Kantinekosten" :account/type :cst}
+ {:account/id "44410"
+  :account/name   "Voeding/genot personeel" :account/type :cst}
+ {:account/id "44420"
+  :account/name   "Bedrijfskleding" :account/type :cst}
+ {:account/id "44430"
+  :account/name   "Vakcursussen/bedr.opleidingen" :account/type :cst}
+ {:account/id "44440"
+  :account/name   "Reiskosten woon - werk" :account/type :cst}
+ {:account/id "44450"
+  :account/name   "Reiskosten zakelijk verkeer" :account/type :cst}
+ {:account/id "44900"
+  :account/name   "Overige personeelskosten" :account/type :cst}
+ {:account/id "44950"
+  :account/name   "Doorberekende overige personeelskosten" :account/type :cst}
+ {:account/id "45"
+  :account/name   "Afschrijvingskosten op immateriële en materiële vaste activa" :account/type :cst}
+ {:account/id "450"
+  :account/name   "Afschrijvingen immateriële vaste activa" :account/type :cst}
+ {:account/id "45100"
+  :account/name   "Afschrijvingskosten oprichtingskosten en kosten uitgifte van aandelen" :account/type :cst}
+ {:account/id "45200"
+  :account/name   "Afschrijvingskosten geactiveerde kosten onderzoek en ontwikkeling" :account/type :cst}
+ {:account/id "45250"
+  :account/name   "Afschrijvingskosten software" :account/type :cst}
+ {:account/id "45300"
+  :account/name   "Afschrijvingskosten concessies, vergunningen en intellectuele eigendom" :account/type :cst}
+ {:account/id "45700"
+  :account/name   "Afschrijvingskosten goodwill" :account/type :cst}
+ {:account/id "45900"
+  :account/name   "Afschrijvingskosten overige immateriële vaste activa" :account/type :cst}
+ {:account/id "460"
+  :account/name   "Afschrijvingen materiële vaste activa" :account/type :cst}
+ {:account/id "46050"
+  :account/name   "Afschrijvingskosten terreinen" :account/type :cst}
+ {:account/id "46100"
+  :account/name   "Afschrijvingskosten bedrijfsgebouwen" :account/type :cst}
+ {:account/id "46200"
+  :account/name   "Afschrijvingskosten verbouwingen" :account/type :cst}
+ {:account/id "46400"
+  :account/name   "Afschrijvingskosten machines en installaties" :account/type :cst}
+ {:account/id "46600"
+  :account/name   "Afschrijvingskosten vervoermiddelen" :account/type :cst}
+ {:account/id "46620"
+  :account/name   "Afschrijvingskosten inventarissen" :account/type :cst}
+ {:account/id "46900"
+  :account/name   "Afschrijvingskosten overige materiële vaste activa" :account/type :cst}
+ {:account/id "48"
+  :account/name   "Overige waardeveranderingen van immateriële en materiële vaste activa" :account/type :cst}
+ {:account/id "48900"
+  :account/name   "Overige waardeveranderingen van overige vaste activa" :account/type :cst}
+ {:account/id "49000"
+  :account/name   "Boekresultaat immateriële vaste activa" :account/type :cst}
+ {:account/id "49100"
+  :account/name   "Boekresultaat materiële vaste activa" :account/type :cst}
+ {:account/id "49900"
+  :account/name   "Doorberekende afschrijvingen en waardeverminderingen" :account/type :cst}
+ {:account/id "50"
+  :account/name   "Bedrijfskosten" :account/type :cst}
+ {:account/id "500"
+  :account/name   "Huisvestingskosten" :account/type :cst}
+ {:account/id "50100"
+  :account/name   "Huur bedrijfsruimte" :account/type :cst}
+ {:account/id "50115"
+  :account/name   "Servicekosten" :account/type :cst}
+ {:account/id "50190"
+  :account/name   "Huurwaarde ondernemingswoning" :account/type :cst}
+ {:account/id "50200"
+  :account/name   "Schoonmaakkosten" :account/type :cst}
+ {:account/id "50310"
+  :account/name   "Onderhoud en reparaties gebouwen" :account/type :cst}
+ {:account/id "50400"
+  :account/name   "Energiekosten (gas/elektra)" :account/type :cst}
+ {:account/id "50490"
+  :account/name   "Privé-gebruik energiekosten" :account/type :cst}
+ {:account/id "50500"
+  :account/name   "Verzekering onroerend goed" :account/type :cst}
+ {:account/id "50510"
+  :account/name   "Onroerend zaakbelasting" :account/type :cst}
+ {:account/id "50530"
+  :account/name   "Overige belastingen inzake huisvesting" :account/type :cst}
+ {:account/id "50700"
+  :account/name   "Dotatie voorziening groot onderhoud gebouwen" :account/type :cst}
+ {:account/id "50900"
+  :account/name   "Diverse huisvestingskosten" :account/type :cst}
+ {:account/id "50995"
+  :account/name   "Doorberekende huisvestingskosten" :account/type :cst}
+ {:account/id "510"
+  :account/name   "Exploitatie- en machinekosten" :account/type :cst}
+ {:account/id "51100"
+  :account/name   "Huur inventaris" :account/type :cst}
+ {:account/id "51110"
+  :account/name   "Huur machines" :account/type :cst}
+ {:account/id "51200"
+  :account/name   "Leasekosten inventaris" :account/type :cst}
+ {:account/id "51210"
+  :account/name   "Operational leasing machines" :account/type :cst}
+ {:account/id "51300"
+  :account/name   "Onderhoud inventaris" :account/type :cst}
+ {:account/id "51310"
+  :account/name   "Onderhoud machines" :account/type :cst}
+ {:account/id "51315"
+  :account/name   "Reparatie en onderhoud machines" :account/type :cst}
+ {:account/id "51400"
+  :account/name   "Kleine aanschaffingen inventarissen" :account/type :cst}
+ {:account/id "51410"
+  :account/name   "Kleine aanschaffingen machines" :account/type :cst}
+ {:account/id "51500"
+  :account/name   "Gereedschapskosten" :account/type :cst}
+ {:account/id "51510"
+  :account/name   "Brandstof machines" :account/type :cst}
+ {:account/id "51520"
+  :account/name   "Diverse kosten inventaris" :account/type :cst}
+ {:account/id "51530"
+  :account/name   "Overige belastingen inzake exploitatie en machines" :account/type :cst}
+ {:account/id "51540"
+  :account/name   "Werk door derden" :account/type :cst}
+ {:account/id "51550"
+  :account/name   "Verzekering inventaris" :account/type :cst}
+ {:account/id "51560"
+  :account/name   "Kosten verpakkingsmateriaal" :account/type :cst}
+ {:account/id "51590"
+  :account/name   "Overige kosten machines" :account/type :cst}
+ {:account/id "51600"
+  :account/name   "Dotatie voorziening groot onderhoud inventaris" :account/type :cst}
+ {:account/id "51800"
+  :account/name   "Dotatie voorziening groot onderhoud machines" :account/type :cst}
+ {:account/id "51850"
+  :account/name   "Dotatie kostenegalisatiereserve groot onderhoud machines" :account/type :cst}
+ {:account/id "51870"
+  :account/name   "Dotatie reserve assurantie eigen risico machines" :account/type :cst}
+ {:account/id "51900"
+  :account/name   "Overige exploitatie- en machinekosten" :account/type :cst}
+ {:account/id "51995"
+  :account/name   "Doorberekende exploitatie- en machinekosten" :account/type :cst}
+ {:account/id "520"
+  :account/name   "Verkoopkosten" :account/type :cst}
+ {:account/id "52100"
+  :account/name   "Reclame- en advertentiekosten" :account/type :cst}
+ {:account/id "52110"
+  :account/name   "Kosten promotie / sponsoring / donaties" :account/type :cst}
+ {:account/id "52120"
+  :account/name   "Beurskosten" :account/type :cst}
+ {:account/id "52200"
+  :account/name   "Relatiegeschenken (beperkt aftrekbaar)" :account/type :cst}
+ {:account/id "52210"
+  :account/name   "Kerstpakketten relaties" :account/type :cst}
+ {:account/id "52220"
+  :account/name   "Representatiekosten (beperkt aftrekbaar)" :account/type :cst}
+ {:account/id "52300"
+  :account/name   "Reis- en verblijfkosten" :account/type :cst}
+ {:account/id "52310"
+  :account/name   "Km-vergoeding verkopers" :account/type :cst}
+ {:account/id "52400"
+  :account/name   "Etalagekosten" :account/type :cst}
+ {:account/id "52410"
+  :account/name   "Vrachtkosten" :account/type :cst}
+ {:account/id "52420"
+  :account/name   "Incassokosten" :account/type :cst}
+ {:account/id "52430"
+  :account/name   "Verpakkingsmaterialen" :account/type :cst}
+ {:account/id "52500"
+  :account/name   "Verkoopprovisie" :account/type :cst}
+ {:account/id "52510"
+  :account/name   "Commissies" :account/type :cst}
+ {:account/id "52520"
+  :account/name   "Franchisefee" :account/type :cst}
+ {:account/id "52600"
+  :account/name   "Dotatie voorziening dubieuze debiteuren" :account/type :cst}
+ {:account/id "52610"
+  :account/name   "Afboeking dubieuze debiteuren" :account/type :cst}
+ {:account/id "52700"
+  :account/name   "Dotatie garantievoorziening" :account/type :cst}
+ {:account/id "52800"
+  :account/name   "Websitekosten" :account/type :cst}
+ {:account/id "52810"
+  :account/name   "Korting op verkoop" :account/type :cst}
+ {:account/id "52900"
+  :account/name   "Diverse verkoopkosten" :account/type :cst}
+ {:account/id "52995"
+  :account/name   "Doorberekende verkoopkosten" :account/type :cst}
+ {:account/id "530"
+  :account/name   "Autokosten" :account/type :cst}
+ {:account/id "53100"
+  :account/name   "Huur vervoermiddelen" :account/type :cst}
+ {:account/id "53110"
+  :account/name   "Operational leasing auto's" :account/type :cst}
+ {:account/id "53200"
+  :account/name   "Brandstof vervoermiddelen" :account/type :cst}
+ {:account/id "53210"
+  :account/name   "Reparatie en onderhoud auto's" :account/type :cst}
+ {:account/id "53220"
+  :account/name   "Verzekering auto's" :account/type :cst}
+ {:account/id "53230"
+  :account/name   "Motorrijtuigenbelasting" :account/type :cst}
+ {:account/id "53240"
+  :account/name   "Autokostenvergoeding" :account/type :cst}
+ {:account/id "53250"
+  :account/name   "Parkeerkosten" :account/type :cst}
+ {:account/id "53260"
+  :account/name   "Verkeersboetes/overtredingen" :account/type :cst}
+ {:account/id "53270"
+  :account/name   "Overige belastingen inzake vervoermiddelen" :account/type :cst}
+ {:account/id "53290"
+  :account/name   "Bijdrage werknemers leaseregeling" :account/type :cst}
+ {:account/id "53300"
+  :account/name   "Privé-gebruik vervoermiddelen" :account/type :cst}
+ {:account/id "53310"
+  :account/name   "BTW privé-gebruik vervoermiddelen" :account/type :cst}
+ {:account/id "53800"
+  :account/name   "Dotatie reserve assurantie eigen risico vervoermiddelen" :account/type :cst}
+ {:account/id "53900"
+  :account/name   "Diverse kosten vervoermiddelen" :account/type :cst}
+ {:account/id "53995"
+  :account/name   "Doorberekende autokosten" :account/type :cst}
+ {:account/id "550"
+  :account/name   "Kantoorkosten" :account/type :cst}
+ {:account/id "55100"
+  :account/name   "Kantoorbenodigdheden" :account/type :cst}
+ {:account/id "55110"
+  :account/name   "Porti en verzendkosten" :account/type :cst}
+ {:account/id "55120"
+  :account/name   "Telefoon/internetkosten" :account/type :cst}
+ {:account/id "55130"
+  :account/name   "Privé-gebruik telefoon/internetkosten" :account/type :cst}
+ {:account/id "55200"
+  :account/name   "Drukwerk" :account/type :cst}
+ {:account/id "55300"
+  :account/name   "Kleine aanschaffingen kantoorinventaris" :account/type :cst}
+ {:account/id "55400"
+  :account/name   "Contributies/abonnementen" :account/type :cst}
+ {:account/id "55410"
+  :account/name   "Vakliteratuur" :account/type :cst}
+ {:account/id "55500"
+  :account/name   "Boekhouding" :account/type :cst}
+ {:account/id "55510"
+  :account/name   "Incassokosten" :account/type :cst}
+ {:account/id "55520"
+  :account/name   "Kosten software" :account/type :cst}
+ {:account/id "55600"
+  :account/name   "Assurantiepremie" :account/type :cst}
+ {:account/id "55700"
+  :account/name   "Reparatie en onderhoud kantoorinventaris" :account/type :cst}
+ {:account/id "55900"
+  :account/name   "Diverse kantoorkosten" :account/type :cst}
+ {:account/id "55995"
+  :account/name   "Doorberekende kantoorkosten" :account/type :cst}
+ {:account/id "560"
+  :account/name   "Algemene kosten" :account/type :cst}
+ {:account/id "56030"
+  :account/name   "Kosten onderzoek en ontwikkeling" :account/type :cst}
+ {:account/id "56040"
+  :account/name   "Rechten en vergunningen" :account/type :cst}
+ {:account/id "56090"
+  :account/name   "Overige organisatiekosten" :account/type :cst}
+ {:account/id "56095"
+  :account/name   "Doorberekende organisatiekosten" :account/type :cst}
+ {:account/id "56110"
+  :account/name   "Diverse bedrijfsverzekeringen" :account/type :cst}
+ {:account/id "56140"
+  :account/name   "Schadevergoedingen ontvangen" :account/type :cst}
+ {:account/id "56195"
+  :account/name   "Doorberekende assurantiekosten" :account/type :cst}
+ {:account/id "56210"
+  :account/name   "Accountantskosten, onderzoek van de jaarrekening" :account/type :cst}
+ {:account/id "56240"
+  :account/name   "Accountantskosten, andere niet-controlediensten" :account/type :cst}
+ {:account/id "56250"
+  :account/name   "Privé-gebruik accountantskosten" :account/type :cst}
+ {:account/id "56260"
+  :account/name   "Notariskosten" :account/type :cst}
+ {:account/id "56270"
+  :account/name   "Advocaat- en juridische kosten" :account/type :cst}
+ {:account/id "56290"
+  :account/name   "Diverse advieskosten" :account/type :cst}
+ {:account/id "56320"
+  :account/name   "Kasverschillen" :account/type :cst}
+ {:account/id "56330"
+  :account/name   "Bankkosten" :account/type :cst}
+ {:account/id "56340"
+  :account/name   "Koersverschillen (kosten)" :account/type :cst}
+ {:account/id "56341"
+  :account/name   "Afrondingsverschillen euro (kosten)" :account/type :cst}
+ {:account/id "56342"
+  :account/name   "Betalingsverschillen (kosten)" :account/type :cst}
+ {:account/id "56350"
+  :account/name   "Geldboetes en administratieve verhogingen" :account/type :cst}
+ {:account/id "56360"
+  :account/name   "Naheffing BTW" :account/type :cst}
+ {:account/id "56361"
+  :account/name   "BTW niet vorderbaar" :account/type :cst}
+ {:account/id "56890"
+  :account/name   "Overige algemene kosten" :account/type :cst}
+ {:account/id "56895"
+  :account/name   "Doorberekende algemene kosten" :account/type :cst}
+ {:account/id "92"
+  :account/name   "Financiële lasten" :account/type :cst}
+ {:account/id "920"
+  :account/name   "Rentelasten en soortgelijke kosten" :account/type :cst}
+ {:account/id "92300"
+  :account/name   "Diverse rente- en financieringskosten" :account/type :cst}
+ {:account/id "92320"
+  :account/name   "Betaalde rente leningen" :account/type :cst}
+ {:account/id "92330"
+  :account/name   "Betaalde rente hypotheken" :account/type :cst}
+ {:account/id "92350"
+  :account/name   "Betaalde rente financieringen (langlopend)" :account/type :cst}
+ {:account/id "92370"
+  :account/name   "Rente en kosten bank" :account/type :cst}
+ {:account/id "94"
+  :account/name   "Vennootschapsbelasting" :account/type :cst}
+ {:account/id "94100"
+  :account/name   "Vennootschapsbelasting lopend boekjaar" :account/type :cst}
+ {:account/id "94300"
+  :account/name   "Latente vennootschapsbelasting" :account/type :cst}
+ {:account/id "95"
+  :account/name   "Resultaat deelnemingen en aandeel derden" :account/type :cst}
+ {:account/id "95100"
+  :account/name   "Aandeel in resultaat van ondernemingen waarin wordt deelgenomen" :account/type :cst}
+ {:account/id "96"
+  :account/name   "Buitengewone baten en lasten" :account/type :cst}
+ {:account/id "96000"
+  :account/name   "Buitengewone baten" :account/type :cst}
+ {:account/id "97000"
+  :account/name   "Buitengewone lasten" :account/type :cst}
+ {:account/id "97900"
+  :account/name   "Belastingen buitengewoon resultaat" :account/type :cst}
+ {:account/id "W"
+  :account/name   "Winst" :account/type :cst}
+ {:account/id "OPB"
+  :account/name   "Opbrengsten" :account/type :prf}
+ {:account/id "80"
+  :account/name   "Omzet" :account/type :prf}
+ {:account/id "80100"
+  :account/name   "Omzet hoog tarief" :account/type :prf}
+ {:account/id "80200"
+  :account/name   "Omzet laag tarief" :account/type :prf}
+ {:account/id "80300"
+  :account/name   "Omzet leveringen belast met overige tarieven" :account/type :prf}
+ {:account/id "80400"
+  :account/name   "Omzet privégebruik goederen" :account/type :prf}
+ {:account/id "80600"
+  :account/name   "Omzet BTW vrijgesteld" :account/type :prf}
+ {:account/id "80700"
+  :account/name   "Omzet buiten de EU" :account/type :prf}
+ {:account/id "80800"
+  :account/name   "Omzet binnen de EU" :account/type :prf}
+ {:account/id "85400"
+  :account/name   "Betalingskorting debiteuren" :account/type :prf}
+ {:account/id "86"
+  :account/name   "Wijziging voorraden" :account/type :prf}
+ {:account/id "86100"
+  :account/name   "Wijzigingen in voorraden gereed product" :account/type :prf}
+ {:account/id "86200"
+  :account/name   "Wjzigingen in voorraden onderhanden werk" :account/type :prf}
+ {:account/id "86300"
+  :account/name   "Opbrengsten onderhanden projecten" :account/type :prf}
+ {:account/id "86410"
+  :account/name   "Geactiveerde productie voor het eigen bedrijf" :account/type :prf}
+ {:account/id "89"
+  :account/name   "Overige bedrijfsopbrengsten" :account/type :prf}
+ {:account/id "89650"
+  :account/name   "Ontvangen restituties en subsidies" :account/type :prf}
+ {:account/id "89700"
+  :account/name   "Opbrengst verhuur" :account/type :prf}
+ {:account/id "89810"
+  :account/name   "Betalingsverschillen (opbrengsten)" :account/type :prf}
+ {:account/id "89850"
+  :account/name   "Kleine ondernemingsregeling BTW" :account/type :prf}
+ {:account/id "89860"
+  :account/name   "Afrondingsverschillen euro (opbrengsten)" :account/type :prf}
+ {:account/id "89900"
+  :account/name   "Overige diverse opbrengsten" :account/type :prf}
+ {:account/id "91"
+  :account/name   "Financiële baten" :account/type :prf}
+ {:account/id "91310"
+  :account/name   "Ontvangen dividend" :account/type :prf}
+ {:account/id "91410"
+  :account/name   "Rente deposito" :account/type :prf}
+ {:account/id "91510"
+  :account/name   "Andere rentebaten en soortgelijke opbrengsten" :account/type :prf}
+ {:account/id "92600"
+  :account/name   "Koersverschillen (opbrengsten)" :account/type :prf}
+ {:account/id "V"
+  :account/name   "Verlies" :account/type :prf}
+ {:account/id "PAS"
+  :account/name   "Passiva" :account/type :lia}
+ {:account/id "05"
+  :account/name   "Eigen vermogen" :account/type :lia}
+ {:account/id "050"
+  :account/name   "Gestort en opgevraagd kapitaal" :account/type :lia}
+ {:account/id "05010"
+  :account/name   "Geplaatst aandelenkapitaal" :account/type :lia}
+ {:account/id "051"
+  :account/name   "Agioreserves" :account/type :lia}
+ {:account/id "05110"
+  :account/name   "Agioreserve" :account/type :lia}
+ {:account/id "052"
+  :account/name   "Herwaarderingsreserves" :account/type :lia}
+ {:account/id "05210"
+  :account/name   "Herwaarderingsreserve" :account/type :lia}
+ {:account/id "053"
+  :account/name   "Wettelijke reserve" :account/type :lia}
+ {:account/id "05310"
+  :account/name   "Wettelijke reserve" :account/type :lia}
+ {:account/id "054"
+  :account/name   "Statutaire reserves" :account/type :lia}
+ {:account/id "05430"
+  :account/name   "Statutaire reserve" :account/type :lia}
+ {:account/id "055"
+  :account/name   "Overige reserves" :account/type :lia}
+ {:account/id "05510"
+  :account/name   "Onverdeelde winst" :account/type :lia}
+ {:account/id "05520"
+  :account/name   "Resultaat lopend boekjaar" :account/type :lia}
+ {:account/id "058"
+  :account/name   "Fiscale reserves" :account/type :lia}
+ {:account/id "059"
+  :account/name   "Aandeel van derden" :account/type :lia}
+ {:account/id "05910"
+  :account/name   "Aandelen van derden" :account/type :lia}
+ {:account/id "06"
+  :account/name   "Kapitaal (Privé en VOF)" :account/type :lia}
+ {:account/id "060"
+  :account/name   "Kapitaal vennoot 1" :account/type :lia}
+ {:account/id "06010"
+  :account/name   "Bedrijfskapitaal vennoot 1" :account/type :lia}
+ {:account/id "06020"
+  :account/name   "Resultaat van het boekjaar vennoot 1" :account/type :lia}
+ {:account/id "06030"
+  :account/name   "Privé-stortingen vennoot 1" :account/type :lia}
+ {:account/id "06040"
+  :account/name   "Privé betaalde facturen vennoot 1" :account/type :lia}
+ {:account/id "06050"
+  :account/name   "Privé-opnamen vennoot 1" :account/type :lia}
+ {:account/id "06060"
+  :account/name   "Privé-gebruik auto vennoot 1" :account/type :lia}
+ {:account/id "06061"
+  :account/name   "Privé-gebruik overig vennoot 1" :account/type :lia}
+ {:account/id "06068"
+  :account/name   "Ziektekosten vennoot 1" :account/type :lia}
+ {:account/id "06075"
+  :account/name   "Belastingen vennoot 1" :account/type :lia}
+ {:account/id "06082"
+  :account/name   "Giften vennoot 1" :account/type :lia}
+ {:account/id "06085"
+  :account/name   "Kosten woonhuis vennoot 1" :account/type :lia}
+ {:account/id "06090"
+  :account/name   "Verzekeringpremies vennoot 1" :account/type :lia}
+ {:account/id "06095"
+  :account/name   "Overige privé-opnamen vennoot 1" :account/type :lia}
+ {:account/id "061"
+  :account/name   "Kapitaal vennoot 2" :account/type :lia}
+ {:account/id "06110"
+  :account/name   "Bedrijfskapitaal vennoot 2" :account/type :lia}
+ {:account/id "06120"
+  :account/name   "Resultaat van het boekjaar vennoot 2" :account/type :lia}
+ {:account/id "06130"
+  :account/name   "Privé-stortingen vennoot 2" :account/type :lia}
+ {:account/id "06140"
+  :account/name   "Privé betaalde facturen vennoot 2" :account/type :lia}
+ {:account/id "06150"
+  :account/name   "Privé-opnamen vennoot 2" :account/type :lia}
+ {:account/id "06160"
+  :account/name   "Privé-gebruik auto vennoot 2" :account/type :lia}
+ {:account/id "06161"
+  :account/name   "Privé-gebruik overig vennoot 2" :account/type :lia}
+ {:account/id "06168"
+  :account/name   "Ziektekosten venoot 2" :account/type :lia}
+ {:account/id "06175"
+  :account/name   "Belastingen vennoot 2" :account/type :lia}
+ {:account/id "06182"
+  :account/name   "Giften vennoot 2" :account/type :lia}
+ {:account/id "06185"
+  :account/name   "Kosten woonhuis vennoot 2" :account/type :lia}
+ {:account/id "06190"
+  :account/name   "Verzekeringspremies vennoot 2" :account/type :lia}
+ {:account/id "06195"
+  :account/name   "Overige privé-opnamen vennoot 2" :account/type :lia}
+ {:account/id "069"
+  :account/name   "Fiscale oudedagsreseve (FOR)" :account/type :lia}
+ {:account/id "06910"
+  :account/name   "Fiscale oudedagsreserve (FOR) - firmant 1" :account/type :lia}
+ {:account/id "06911"
+  :account/name   "Fiscale oudedagsreserve (FOR) - firmant 2" :account/type :lia}
+ {:account/id "07"
+  :account/name   "Voorzieningen" :account/type :lia}
+ {:account/id "070"
+  :account/name   "Voorziening voor pensioenen" :account/type :lia}
+ {:account/id "0701"
+  :account/name   "Voorziening voor pensioenen directie in eigen beheer" :account/type :lia}
+ {:account/id "05515"
+  :account/name   "Overige reserves" :account/type :lia}
+ {:account/id "07011"
+  :account/name   "Stamrechtvoorziening" :account/type :lia}
+ {:account/id "07012"
+  :account/name   "Pensioenvoorziening" :account/type :lia}
+ {:account/id "0702"
+  :account/name   "Backserviceverplichtingen" :account/type :lia}
+ {:account/id "07021"
+  :account/name   "Backserviceverplichting 1" :account/type :lia}
+ {:account/id "07022"
+  :account/name   "Backserviceverplichting 2" :account/type :lia}
+ {:account/id "071"
+  :account/name   "Voorziening voor belastingen" :account/type :lia}
+ {:account/id "07110"
+  :account/name   "Voorziening latente belastingen" :account/type :lia}
+ {:account/id "072"
+  :account/name   "Voorziening overige" :account/type :lia}
+ {:account/id "07210"
+  :account/name   "Voorziening voor groot onderhoud gebouwen" :account/type :lia}
+ {:account/id "07310"
+  :account/name   "Voorziening garantieverplichtingen" :account/type :lia}
+ {:account/id "07370"
+  :account/name   "Voorziening in verband met deelnemingen" :account/type :lia}
+ {:account/id "07385"
+  :account/name   "Voorziening stamrecht" :account/type :lia}
+ {:account/id "08"
+  :account/name   "Langlopende schulden" :account/type :lia}
+ {:account/id "080"
+  :account/name   "Achtergestelde leningen" :account/type :lia}
+ {:account/id "08010"
+  :account/name   "Achtergestelde Lening 1 (langlopend)" :account/type :lia}
+ {:account/id "081"
+  :account/name   "Converteerbare leningen" :account/type :lia}
+ {:account/id "08050"
+  :account/name   "Converteerbare lening 1 (langlopend)" :account/type :lia}
+ {:account/id "082"
+  :account/name   "Andere obligaties en onderhandse leningen" :account/type :lia}
+ {:account/id "08080"
+  :account/name   "Andere obligaties en onderhandse lening 1 (langlopend)" :account/type :lia}
+ {:account/id "084"
+  :account/name   "Schulden aan kredietinstellingen" :account/type :lia}
+ {:account/id "08110"
+  :account/name   "Leasing" :account/type :lia}
+ {:account/id "08210"
+  :account/name   "Hypotheek o/g 1 (langlopend)" :account/type :lia}
+ {:account/id "08220"
+  :account/name   "Hypotheek o/g 2 (langlopend)" :account/type :lia}
+ {:account/id "08310"
+  :account/name   "Financiering 1 (langlopend)" :account/type :lia}
+ {:account/id "08410"
+  :account/name   "Lening 1 van kredietinstellingen (langlopend)" :account/type :lia}
+ {:account/id "085"
+  :account/name   "Schulden aan verbonden maatschappijen (langlopend)" :account/type :lia}
+ {:account/id "08510"
+  :account/name   "Schuld aan groepsmaatschappij 1 (langlopend)" :account/type :lia}
+ {:account/id "08710"
+  :account/name   "Schuld aan participant 1 (langlopend)" :account/type :lia}
+ {:account/id "088"
+  :account/name   "Overige schulden" :account/type :lia}
+ {:account/id "08800"
+  :account/name   "Overige langlopende schulden" :account/type :lia}
+ {:account/id "20"
+  :account/name   "Kortlopende schulden" :account/type :lia}
+ {:account/id "230"
+  :account/name   "Schulden aan leveranciers en handelskredieten" :account/type :lia}
+ {:account/id "22000"
+  :account/name   "Crediteuren" :account/type :lia}
+ {:account/id "240"
+  :account/name   "Schulden aan verbonden maatschappijen" :account/type :lia}
+ {:account/id "24100"
+  :account/name   "Groepsmaatschappij 1 (bv)" :account/type :lia}
+ {:account/id "26100"
+  :account/name   "Participanten en maatschappijen waarin wordt deelgenomen 1 (bv)" :account/type :lia}
+ {:account/id "270"
+  :account/name   "Belastingen en premies sociale verzekeringen" :account/type :lia}
+ {:account/id "2700"
+  :account/name   "BTW af te dragen" :account/type :lia}
+ {:account/id "27030"
+  :account/name   "BTW af te dragen hoog" :account/type :lia}
+ {:account/id "27040"
+  :account/name   "BTW af te dragen laag" :account/type :lia}
+ {:account/id "27050"
+  :account/name   "BTW af te dragen overig" :account/type :lia}
+ {:account/id "27060"
+  :account/name   "BTW af te dragen privé-gebruik" :account/type :lia}
+ {:account/id "27070"
+  :account/name   "BTW af te dragen verlegd" :account/type :lia}
+ {:account/id "27080"
+  :account/name   "BTW af te dragen import (buiten EU)" :account/type :lia}
+ {:account/id "27090"
+  :account/name   "BTW af te dragen ICP EU" :account/type :lia}
+ {:account/id "27140"
+  :account/name   "BTW af te dragen op aangifte" :account/type :lia}
+ {:account/id "27160"
+  :account/name   "Aansluiting BTW aangiftes" :account/type :lia}
+ {:account/id "27170"
+  :account/name   "BTW saldo uit Accountview" :account/type :lia}
+ {:account/id "2720"
+  :account/name   "Loonheffing" :account/type :lia}
+ {:account/id "27210"
+  :account/name   "Af te dragen loonheffing" :account/type :lia}
+ {:account/id "2730"
+  :account/name   "Vennootschapsbelasting" :account/type :lia}
+ {:account/id "27310"
+  :account/name   "Af te dragen vennootschapsbelasting" :account/type :lia}
+ {:account/id "2740"
+  :account/name   "Bedrijfsvereniging" :account/type :lia}
+ {:account/id "27410"
+  :account/name   "Af te dragen overige sociale premies" :account/type :lia}
+ {:account/id "2750"
+  :account/name   "Overige belastingen" :account/type :lia}
+ {:account/id "27510"
+  :account/name   "Af te dragen dividendbelasting" :account/type :lia}
+ {:account/id "275"
+  :account/name   "Schulden ter zake van pensioenen" :account/type :lia}
+ {:account/id "27550"
+  :account/name   "Af te dragen pensioenpremies" :account/type :lia}
+ {:account/id "280"
+  :account/name   "Overige schulden" :account/type :lia}
+ {:account/id "28100"
+  :account/name   "Rekening-courant Thijs Creemers" :account/type :lia}
+ {:account/id "28110"
+  :account/name   "Rekening-courant 2 (bv)" :account/type :lia}
+ {:account/id "28120"
+  :account/name   "Rekening courant 3 (bv)" :account/type :lia}
+ {:account/id "28500"
+  :account/name   "Nettolonen te betalen" :account/type :lia}
+ {:account/id "28540"
+  :account/name   "Reservering vakantiegeld" :account/type :lia}
+ {:account/id "28590"
+  :account/name   "Overige netto-afdrachten" :account/type :lia}
+ {:account/id "28900"
+  :account/name   "Overige schulden" :account/type :lia}
+ {:account/id "290"
+  :account/name   "Overlopende passiva" :account/type :lia}
+ {:account/id "29100"
+  :account/name   "Nog te ontvangen facturen leveranciers" :account/type :lia}
+ {:account/id "29200"
+  :account/name   "Nog te betalen kosten" :account/type :lia}
+ {:account/id "29300"
+  :account/name   "Rente hypotheken te betalen" :account/type :lia}
+ {:account/id "29310"
+  :account/name   "Rente leningen te betalen" :account/type :lia}
+ {:account/id "29390"
+  :account/name   "Rente diversen te betalen" :account/type :lia}
+ {:account/id "29400"
+  :account/name   "Openstaande credit card betalingen" :account/type :lia}
+ {:account/id "29500"
+  :account/name   "Nog te boeken omzet" :account/type :lia}
+ {:account/id "29700"
+  :account/name   "Vooruitontvangen betalingen verkopen" :account/type :lia}
+ {:account/id "29900"
+  :account/name   "Overige overlopende passiva" :account/type :lia}
+ {:account/id "299"
+  :account/name   "Tussenrekeningen passiva" :account/type :lia}
+ {:account/id "29950"
+  :account/name   "Nog te rubriceren ontvangsten" :account/type :lia}
+ {:account/id "29960"
+  :account/name   "Vraagposten" :account/type :lia}
+ {:account/id "29970"
+  :account/name   "Tegenrekening balansposten" :account/type :lia}
+ {:account/id "29980"
+  :account/name   "Tegenrekening saldi betaalrekeningen" :account/type :lia}]
