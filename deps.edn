@@ -5,12 +5,11 @@
            ;; crux db
            juxt/crux-core                 {:mvn/version "21.05-1.17.0-beta"}
            juxt/crux-rocksdb              {:mvn/version "21.05-1.17.0-beta"}
-
            ;; Full text
            juxt/crux-lucene               {:mvn/version "21.05-1.17.0-alpha"}
            ;; schemas
            metosin/malli                  {:mvn/version "0.5.1"}
-
+           com.gfredericks/test.chuck     {:mvn/version "0.2.10"} ;; needed for malli generator regex.
            ;; logging:
            org.clojure/tools.logging      {:mvn/version "1.1.0"}
            ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
@@ -22,7 +21,7 @@
 
            :uberjar   {:extra-deps {uberdeps/uberdeps {:mvn/version "1.0.4"}}
                        :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}
-
+           ;; - find packages that are outdated $ clj -M:outdated
            :outdated  {:extra-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
                        :main-opts  ["-m" "antq.core"]}
            ;; - run code check: $ clj -M:clj-kondo

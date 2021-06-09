@@ -3,6 +3,7 @@
             [clojure.tools.logging :as log]
             ;[crux.api :as crux]
             ;[crux-in-a-box.db :as db]
+            [malli.generator :as mg]
             [malli.core :as m]
             [malli.error :as me]
             [clojure.tools.reader.edn :as edn]))
@@ -14,14 +15,14 @@
                     #"^[0-9]{1,5}$"])
 
 (def AccountType [:enum {:title "Account types"} :ast :lia :cst :prf])
-
+(def SummaryLevel [:and pos-int? [:>= 0] [:<= 4]])
 (def Account
   [:map
    {:closed? true}
    [:account/id AccountNumber]
    [:account/name NotEmptyString]
    [:account/type AccountType]
-   [:account/summary-level int?]])
+   [:account/summary-level SummaryLevel]]) ; summary level is function of id
 
 ;; Functions
 (defn calc-summary-level
