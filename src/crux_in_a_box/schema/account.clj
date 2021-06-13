@@ -1,12 +1,22 @@
 (ns crux-in-a-box.schema.account
-  (:require [crux-in-a-box.schema.core :refer [NotEmptyString]]
+  (:require
             [clojure.tools.logging :as log]
-            ;[crux.api :as crux]
-            ;[crux-in-a-box.db :as db]
-            [malli.generator :as mg]
+            [clojure.tools.reader.edn :as edn]
+            [crux-in-a-box.schema.core :refer [NotEmptyString]]
             [malli.core :as m]
-            [malli.error :as me]
-            [clojure.tools.reader.edn :as edn]))
+            [malli.error :as me]))
+
+;;
+;; What does debit or credit mean!
+;; +----------------------+----------+----------+
+;; |Kind of account       |  Debit   | Credit   |
+;; +----------------------+----------+----------+
+;; |Asset                 | Increase | Decrease |
+;; |Liability             | Decrease | Increase |
+;; |Income/Revenue        | Decrease | Increase |
+;; |Expense/Cost/Dividend | Increase | Decrease |
+;; |Equity/Capital        | Decrease | Increase |
+;; +----------------------+----------+----------+
 
 ;; Schema definitions
 (def AccountNumber [:re
@@ -15,7 +25,7 @@
                     #"^[0-9]{1,5}$"])
 
 (def AccountType [:enum {:title "Account types"} :ast :lia :cst :prf])
-(def SummaryLevel [:and pos-int? [:>= 0] [:<= 4]])
+(def SummaryLevel [:and int? [:>= 0] [:<= 4]])
 (def Account
   [:map
    {:closed? true}
@@ -46,7 +56,8 @@
      :value (if valid?
               new-account
               (let [reason (m/explain Account new-account)]
-                (log/error (str "account/create-account: " (me/humanize reason)))
+                (log/error (str "account/create-account: "))
+
                 (:errors reason)))}))
 
 (defn import-accounts-fixture
