@@ -2,9 +2,8 @@
   (:require
    [crux-in-a-box.schema.account :refer [AccountNumber]]
    [crux-in-a-box.schema.core :refer [NotEmptyString]]
-   [malli.generator :as mg]
    [malli.core :as m]
-   [malli.error :as me]))
+   [malli.generator :as mg]))
 
 
 (def TransactionLine
@@ -41,8 +40,70 @@
 (defn date []
   (java.util.Date.))
 
-(def transaction-check
-  (let [id (uuid)
+
+(comment
+ (m/explain Transaction (let [id (uuid)])
+        t-date (date)
+    [{:transaction/id id
+      :transaction/line-number 1
+      :transaction/date t-date
+      :transaction/account-number "12345"
+      :transaction/description "bb"
+      :transaction/cost-center ""
+      :transaction/sub-admin ""
+      :transaction/amount 10.0
+      :transaction/side :credit}
+     {:transaction/id id
+      :transaction/line-number 2
+      :transaction/date t-date
+      :transaction/account-number "22334"
+      :transaction/description "bb"
+      :transaction/cost-center ""
+      :transaction/sub-admin ""
+      :transaction/amount 5.0
+      :transaction/side :debit}
+     {:transaction/id id
+      :transaction/line-number 3
+      :transaction/date t-date
+      :transaction/account-number "22442"
+      :transaction/description "bb"
+      :transaction/cost-center ""
+      :transaction/sub-admin ""
+      :transaction/amount 5.0
+      :transaction/side :debit}])
+ (mg/generate TransactionLine)
+ (line-totals [5.0 0.0] {:transaction/amount 10.0
+                         :transaction/side :credit})
+ (balance (let [id (uuid)])
+        t-date (date)
+    [{:transaction/id id
+      :transaction/line-number 1
+      :transaction/date t-date
+      :transaction/account-number "12345"
+      :transaction/description "bb"
+      :transaction/cost-center ""
+      :transaction/sub-admin ""
+      :transaction/amount 10.0
+      :transaction/side :credit}
+     {:transaction/id id
+      :transaction/line-number 2
+      :transaction/date t-date
+      :transaction/account-number "22334"
+      :transaction/description "bb"
+      :transaction/cost-center ""
+      :transaction/sub-admin ""
+      :transaction/amount 5.0
+      :transaction/side :debit}
+     {:transaction/id id
+      :transaction/line-number 3
+      :transaction/date t-date
+      :transaction/account-number "22442"
+      :transaction/description "bb"
+      :transaction/cost-center ""
+      :transaction/sub-admin ""
+      :transaction/amount 5.0
+      :transaction/side :debit}])
+ (let [id (uuid)
         t-date (date)]
     [{:transaction/id id
       :transaction/line-number 1
@@ -71,12 +132,3 @@
       :transaction/sub-admin ""
       :transaction/amount 5.0
       :transaction/side :debit}]))
-
-
-(comment
- (m/explain Transaction transaction-check)
- (mg/generate TransactionLine)
- (line-totals [5.0 0.0] {:transaction/amount 10.0
-                         :transaction/side :credit})
- (balance transaction-check)
- transaction-check)

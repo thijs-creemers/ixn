@@ -1,5 +1,6 @@
 (ns crux-in-a-box.db
-  (:require [clojure.java.io :as io]
+  (:require
+            [clojure.java.io :as io]
             [crux.api :as crux]))
 
 (defn start-crux! []
