@@ -64,7 +64,7 @@
   (money? (plus (->money 12.3456) (->money 11.33383838)))
   (money? (minus (->money 12.3456) (->money 11.33383838)))
   (<-money (multiply (->money 12.3456) (->money 11.33383838) (->money 2.1)))
-
+  (divide (->money 12.3456) 2)
   (rounded 12.344)
   (apply min [1 2 3 4])
   (->money 12.345))

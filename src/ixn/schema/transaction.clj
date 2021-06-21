@@ -1,14 +1,14 @@
 (ns ixn.schema.transaction
   (:require
-    [clojure.tools.logging :as log]
-    [crux.api :as crux]
-    [malli.core :as m]
-    [malli.generator :as mg]
-    [ixn.db :refer [crux-node transact!]]
-    [ixn.utils :refer [uuid now]]
-    [ixn.money :refer [rounded Money]]
-    [ixn.schema.account :refer [AccountNumber]]
-    [ixn.schema.core :refer [NotEmptyString]]))
+   [clojure.tools.logging :as log]
+   [crux.api :as crux]
+   [malli.core :as m]
+   [malli.generator :as mg]
+   [ixn.db :refer [crux-node transact!]]
+   [ixn.utils :refer [uuid now]]
+   [ixn.money :refer [rounded Money]]
+   [ixn.schema.account :refer [AccountNumber]]
+   [ixn.schema.core :refer [NotEmptyString]]))
 
 
 (def TransactionLine
@@ -177,14 +177,14 @@
      :turnover-account "80200"
      :vat              21})
   (every? true?
-    (for [x (range 20)]
+    (for [_ (range 20)]
       (book-sales-invoice (mg/generate SalesBooking {:seed 10 :size 20}))))
 
   (balance (book-purchase-invoice (mg/generate PurchaseBooking)))
 
   (m/explain Transaction
              (let [id (uuid)
-                   t-date (date)]
+                   t-date (now)]
                [{:transaction/id             id
                  :transaction/line-number    1
                  :transaction/date           t-date
@@ -217,7 +217,7 @@
                           :transaction/side   :credit})
   (balance
     (let [id (uuid)
-          t-date (date)]
+          t-date (now)]
       [{:transaction/id             id
         :transaction/line-number    1
         :transaction/date           t-date
@@ -247,7 +247,7 @@
         :transaction/side           :debit}]))
 
   (for [x (range 2000)]
-    (balance (book-sales-invoice {:invoice-date     (t/now)
+    (balance (book-sales-invoice {:invoice-date     (now)
                                   :description      "ha"
                                   :debtor-id        "123"
                                   :amount           (+ 121.564 x)

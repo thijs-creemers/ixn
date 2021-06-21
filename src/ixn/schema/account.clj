@@ -3,7 +3,7 @@
    [clojure.tools.logging :as log]
    [clojure.tools.reader.edn :as edn]
    [ixn.schema.core :refer [NotEmptyString]]
-   [ixn.utils :refer [uuid]]
+  ;;  [ixn.utils :refer [uuid]]
    [crux.api :as crux]
    [ixn.db :refer [crux-node transact!]]
    [malli.core :as m]))
@@ -129,7 +129,7 @@
 
   (count (fetch-accounts))
   (time (fetch-account-by-id "80200"))
-  (time (fetch-account-by-type :cst))
+  (time (fetch-accounts-by-type :cst))
   (import-accounts-fixture)
   (fetch-accounts-by-summary-level 2)
 

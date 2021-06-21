@@ -4,10 +4,14 @@
    ;; [ixn.schema.core :refer [NotEmptyString]]
    [malli.core :as m]
    ;; [malli.error :as me]
-   [malli.generator :as mg])
-   ;; [malli.provider :as mp]
-  (:import (clojure.network.ip IPAddress)
-           (javax.swing JFormattedTextField$AbstractFormatterFactory)))
+   [malli.generator :as mg]))
+  ;;  [malli.provider :as mp])
+
+
+;; Make sure Address and Network are declared and the clj single pass compile works
+(declare Address)
+(declare Network)
+
 
 ;; Some IP validation functions.
 (defn ip4-address?
@@ -50,9 +54,7 @@
 
 (def cidr? ip-address?)
 
-(def State [:enum :available :allocated :expired :reserved :suspended :allocated-subnet])
-
-(declare Address)
+(def State [:enum :available :allocated :expired :reserved :suspended :allocated-network])
 
 (def IP4Address
   [:re #"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"])
@@ -71,29 +73,33 @@
   (m/validate IP6Address "2001::168:1:1")
   (mg/generate Address))
 
-(def Prefix
+(def Network
   [:map
-   {:title {:en "Prefix / Subnet" :nl "Prefix / Subnet"}}
-   [:prefix/id pos-int?]
-   [:prefix/state State]
-   [:prefix/tags [:set [:re #"^[A-Z]{3,8}$"]]]
-   ;[:prefix/prefix ip-network?]
-   [:prefix/parent Prefix]
-   [:prefix/description string?]
-   [:prefix/index pos-int?]
-   [:prefix/version [:enum {:title {:en "ip version" :nl "ip versie"}} 1 6]]
-   [:prefix/subnet? boolean?]
-   ;[:prefix/addresses [:set Address]]
-   [:prefix/subnets [:set Prefix]]])
+   {:ip-net/title {:en "Prefix / Network" :nl "Prefix / Network"}}
+   [:ip-net/id pos-int?]
+   [:ip-net/state State]
+   [:ip-net/terminal? boolean?]
+   [:ip-net/tags [:set [:re #"^[A-Z]{3,8}$"]]]
+   [:ip-net/parent Network]
+   [:ip-net/description string?]
+   [:ip-net/index pos-int?]
+   [:ip-net/version [:enum {:title {:en "ip version" :nl "ip versie"}} 1 6]]
+   [:ip-net/network? boolean?]
+   [:ip-net/addresses [:set Address]]
+   [:ip-net/networks [:set Network]]])
 
 (def Address
   [:map
-   {:address/title {:en "Ip Address" :nl "IP Adres"}}
-   [:address/name string?]
-   [:address/address IP]
-   [:address/address-id pos-int?]
-   [:address/description string?]
-   [:address/prefix Prefix]
-   [:address/state State]
-   [:address/tags [:set keyword?]]
-   [:address/vrf pos-int?]])
+   {:ip-add/title {:en "Ip Address" :nl "IP Adres"}}
+   [:ip-add/name string?]
+   [:ip-add/address IP]
+   [:ip-add/address-id pos-int?]
+   [:ip-add/description string?]
+   [:ip-add/network Network]
+   [:ip-add/state State]
+   [:ip-add/tags [:set keyword?]]
+   [:ip-add/vrf pos-int?]])
+
+
+(comment
+  (:ip-add/network (mg/generate Address)))

@@ -47,7 +47,4 @@
     '{:find [(pull ?account [*])]
       :where [[?account :account/summary-level 1]]})
 
-  (crux/pull
-    (crux/db crux-node)
-    [:account/type :account/name])
   ,)
