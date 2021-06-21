@@ -1,4 +1,4 @@
-(ns crux-in-a-box.schema.core
+(ns ixn.schema.core
   (:require [clojure.string :as string]))
 
 (def NotEmptyString [:and

@@ -1,10 +1,12 @@
-(ns crux-in-a-box.schema.account
+(ns ixn.schema.account
   (:require
-            [clojure.tools.logging :as log]
-            [clojure.tools.reader.edn :as edn]
-            [crux-in-a-box.schema.core :refer [NotEmptyString]]
-            [malli.core :as m]
-            [malli.error :as me]))
+   [clojure.tools.logging :as log]
+   [clojure.tools.reader.edn :as edn]
+   [ixn.schema.core :refer [NotEmptyString]]
+   [ixn.utils :refer [uuid]]
+   [crux.api :as crux]
+   [ixn.db :refer [crux-node transact!]]
+   [malli.core :as m]))
 
 ;;
 ;; What does debit or credit mean!
@@ -60,25 +62,83 @@
 
                 (:errors reason)))}))
 
+(defn fetch-accounts []
+  (crux/q
+    (crux/db crux-node)
+    '{:find [?act ?id ?nm ?tp ?lvl]
+      :where [[?act :account/id ?id]
+              [?act :account/name ?nm]
+              [?act :account/type ?tp]
+              [?act :account/summary-level ?lvl]
+              [?act :account/summary-level 0]]
+      :order-by [[?id :asc]]}))
+
+(defn fetch-accounts-by-summary-level [lvl]
+  (crux/q
+    (crux/db crux-node)
+    '{:find [?act ?id ?nm ?tp ?lvl]
+      :where [[?act :account/id ?id]
+              [?act :account/name ?nm]
+              [?act :account/type ?tp]
+              [?act :account/summary-level ?lvl]]
+      :in [?lvl]
+      :order-by [[?id :asc]]}
+    lvl))
+
+(defn fetch-account-by-id
+  "Fetch an account by id"
+  [id]
+  (crux/q
+    (crux/db crux-node)
+    '{:find [?act ?id ?nm ?tp ?lvl]
+      :where [[?act :account/id ?id]
+              [?act :account/name ?nm]
+              [?act :account/type ?tp]
+              [?act :account/summary-level ?lvl]
+              [?act :account/summary-level 0]]
+      :in [?id]
+      :order-by [[?id :asc]]}
+    id))
+
+(defn fetch-accounts-by-type
+  "Fetch an account by account-type"
+  [tp]
+  (crux/q
+    (crux/db crux-node)
+    '{:find [?act ?id ?nm ?tp ?lvl]
+      :where [[?act :account/id ?id]
+              [?act :account/name ?nm]
+              [?act :account/type ?tp]
+              [?act :account/summary-level ?lvl]
+              [?act :account/summary-level 0]]
+      :in [?tp]
+      :order-by [[?id :asc]]}
+    tp))
+
 (defn import-accounts-fixture
   []
   (let [fixture (edn/read-string (slurp "resources/fixtures/accounts.edn"))]
-    (->> fixture
-         (map #(create-account %))
-         (filter #(:status %))
-         (mapv #(:value %)))))
+    (transact! (->> fixture
+                    (map #(create-account %))
+                    (filter #(:status %))
+                    (mapv #(:value %))
+                    vec))))
 
 (comment
   "Some repl testing code"
-  (create-account {:account/id "12345" :account/name "ABC" :account/type :ast})
-  (count (import-accounts-fixture))
-  (m/validate AccountNumber "400100")
+
+  (count (fetch-accounts))
+  (time (fetch-account-by-id "80200"))
+  (time (fetch-account-by-type :cst))
+  (import-accounts-fixture)
+  (fetch-accounts-by-summary-level 2)
+
+  (m/validate AccountNumber "40010")
   (m/explain AccountNumber "400100")
   (let [account {:account/id            "800100"
                  :account/name          "Turnover High VAT"
                  :account/type          :prf
                  :account/summary-level 0}]
-    (m/validate Account account)
+    ;(m/validate Account account)
     (m/explain Account account))
-  "")
-
+  ,)

@@ -1,7 +1,7 @@
-(ns crux-in-a-box.schema.ipam
+(ns ixn.schema.ipam
   (:require
    [clojure.network.ip :as ip]
-   ;; [crux-in-a-box.schema.core :refer [NotEmptyString]]
+   ;; [ixn.schema.core :refer [NotEmptyString]]
    [malli.core :as m]
    ;; [malli.error :as me]
    [malli.generator :as mg])

@@ -1,5 +1,5 @@
-(ns crux-in-a-box.schema.relation
-  (:require [crux-in-a-box.schema.core :refer [NotEmptyString UppercaseString]]
+(ns ixn.schema.relation
+  (:require [ixn.schema.core :refer [NotEmptyString UppercaseString]]
             [clojure.tools.logging :as log]
             [malli.core :as m]
             [malli.error :as me]

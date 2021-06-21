@@ -1,4 +1,4 @@
-(ns crux-in-a-box.money
+(ns ixn.money
   (:require
             [malli.core :as m]))
 

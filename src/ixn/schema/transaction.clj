@@ -1,10 +1,15 @@
-(ns crux-in-a-box.schema.transaction
+(ns ixn.schema.transaction
   (:require
-    [crux-in-a-box.money :refer [rounded Money]]
-    [crux-in-a-box.schema.account :refer [AccountNumber]]
-    [crux-in-a-box.schema.core :refer [NotEmptyString]]
+    [clojure.tools.logging :as log]
+    [crux.api :as crux]
     [malli.core :as m]
-    [malli.generator :as mg]))
+    [malli.generator :as mg]
+    [ixn.db :refer [crux-node transact!]]
+    [ixn.utils :refer [uuid now]]
+    [ixn.money :refer [rounded Money]]
+    [ixn.schema.account :refer [AccountNumber]]
+    [ixn.schema.core :refer [NotEmptyString]]))
+
 
 (def TransactionLine
   [:map
@@ -38,11 +43,6 @@
    [:vector TransactionLine]])
 ;[:= 0.0 [:fn (balance [:vector TransactionLine])]]])
 
-(defn uuid []
-  (java.util.UUID/randomUUID))
-(defn date []
-  (java.util.Date.))
-
 (def SalesBooking
   [:map
    [:invoice-date inst?]
@@ -58,7 +58,7 @@
                 [:>= 3.0]
                 [:<= 25.0]]]]])
 
-(defn book-sales-invoice
+(defn- book-sales-invoice
   [{:keys [:invoice-date :description :debtor-id :amount :turnover-account :vat]}]
   (let [id (uuid)
         invoice-amt (rounded amount)
@@ -68,7 +68,7 @@
     [{:transaction/id             id
       :transaction/line-number    1
       :transaction/date           invoice-date
-      :transaction/account-number "13000"
+      :transaction/account-number "12010"
       :transaction/description    description
       :transaction/cost-center    ""
       :transaction/sub-admin      debtor-id
@@ -77,7 +77,7 @@
 
      {:transaction/id             id
       :transaction/line-number    2
-      :transaction/date           date
+      :transaction/date           invoice-date
       :transaction/account-number turnover-account
       :transaction/description    description
       :transaction/cost-center    ""
@@ -87,13 +87,20 @@
 
      {:transaction/id             id
       :transaction/line-number    3
-      :transaction/date           date
+      :transaction/date           invoice-date
       :transaction/account-number "01234"
       :transaction/description    description
       :transaction/cost-center    ""
       :transaction/sub-admin      debtor-id
       :transaction/amount         vat-amt
       :transaction/side           :credit}]))
+
+(defn transact-sales-invoice!
+  [params]
+  (if (balance (book-sales-invoice params))
+    (transact! (book-sales-invoice params))
+    (log/error (str "Sales invoice balance for booking " params " is not 0.00"))))
+
 
 (def PurchaseBooking
   [:map
@@ -121,7 +128,7 @@
       :transaction/side           :credit}
      {:transaction/id             id
       :transaction/line-number    2
-      :transaction/date           date
+      :transaction/date           invoice-date
       :transaction/account-number turnover-account
       :transaction/description    description
       :transaction/cost-center    ""
@@ -130,7 +137,7 @@
       :transaction/side           :debit}
      {:transaction/id             id
       :transaction/line-number    3
-      :transaction/date           date
+      :transaction/date           invoice-date
       :transaction/account-number "01234"
       :transaction/description    description
       :transaction/cost-center    ""
@@ -138,8 +145,37 @@
       :transaction/amount         (rounded 2 (- amount (/ amount (+ 1.0 (/ vat 100)))))
       :transaction/side           :debit}]))
 
+(defn pull-transactions []
+  (crux/q
+    (crux/db crux-node)
+    '{:find [(pull ?trn [*])]
+      :where [[?trn :transaction/id _]]}))
+
+(defn fetch-transactions []
+  (crux/q
+    (crux/db crux-node)
+    '{:find [?trn ?id ?dt ?ln ?dsc ?anr ?cce ?sad ?amt ?sid]
+      :where [[?trn :transaction/id ?id]
+              [?trn :transaction/date ?dt]
+              [?trn :transaction/line-number ?ln]
+              [?trn :transaction/description ?dsc]
+              [?trn :transaction/account-number ?anr]
+              [?trn :transaction/cost-center ?cce]
+              [?trn :transaction/sub-admin   ?sad]
+              [?trn :transaction/amount ?amt]
+              [?trn :transaction/side   ?sid]]
+      :order-by [[?id :asc]]}))
 
 (comment
+  (pull-transactions)
+  (fetch-transactions)
+  (transact-sales-invoice!
+    {:invoice-date (now)
+     :description "My sales invoice test."
+     :debtor-id        "2021-01"
+     :amount           14400
+     :turnover-account "80200"
+     :vat              21})
   (every? true?
     (for [x (range 20)]
       (book-sales-invoice (mg/generate SalesBooking {:seed 10 :size 20}))))
@@ -211,7 +247,7 @@
         :transaction/side           :debit}]))
 
   (for [x (range 2000)]
-    (balance (book-sales-invoice {:invoice-date     #inst"1970-01-01T00:00:00.005-00:00"
+    (balance (book-sales-invoice {:invoice-date     (t/now)
                                   :description      "ha"
                                   :debtor-id        "123"
                                   :amount           (+ 121.564 x)
