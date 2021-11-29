@@ -3,9 +3,9 @@
             ;[clojure.tools.logging :as log]
             ;[malli.core :as m]
             ;[malli.error :as me]
-            [malli.generator :as mg])
+            [malli.generator :as mg]))
             ;; [clojure.tools.reader.edn :as edn])
-  )
+
 
 (declare City)
 

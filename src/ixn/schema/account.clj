@@ -1,12 +1,10 @@
 (ns ixn.schema.account
-  (:require
-   [clojure.tools.logging :as log]
-   [clojure.tools.reader.edn :as edn]
-   [ixn.schema.core :refer [NotEmptyString]]
-  ;;  [ixn.utils :refer [uuid]]
-   [crux.api :as crux]
-   [ixn.db :refer [crux-node transact!]]
-   [malli.core :as m]))
+  (:require [clojure.tools.logging :as log]
+            [clojure.tools.reader.edn :as edn]
+            [crux.api :as crux]
+            [ixn.db :refer [crux-node transact!]]
+            [ixn.schema.core :refer [NotEmptyString]]
+            [malli.core :as m]))
 
 ;;
 ;; What does debit or credit mean!
@@ -27,14 +25,16 @@
                     #"^[0-9]{1,5}$"])
 
 (def AccountType [:enum {:title "Account types"} :ast :lia :cst :prf])
+
 (def SummaryLevel [:and int? [:>= 0] [:<= 4]])
+
 (def Account
   [:map
-   {:closed? true}
-   [:account/id AccountNumber]
-   [:account/name NotEmptyString]
-   [:account/type AccountType]
-   [:account/summary-level SummaryLevel]]) ; summary level is function of id
+   {:closed? true :title   {:en "account" :nl "rekening"}}
+   [:account/id {:title {:en "account number" :nl "rekeningnummer"}} AccountNumber]
+   [:account/name {:title {:en "name" :nl "naam"}} NotEmptyString]
+   [:account/type {:title {:en "account type" :nl "rekening type"}} AccountType]
+   [:account/summary-level {:title {:en "summary level" :nl "verdichtingsniveau"}} SummaryLevel]]) ; summary level is function of id
 
 ;; Functions
 (defn calc-summary-level
@@ -55,63 +55,87 @@
                      :account/summary-level (calc-summary-level id)}
         valid? (m/validate Account new-account)]
     {:status valid?
-     :value (if valid?
-              new-account
-              (let [reason (m/explain Account new-account)]
-                (log/error (str "account/create-account: "))
+     :value  (if valid?
+               new-account
+               (let [reason (m/explain Account new-account)]
+                 (log/error (str "account/create-account: "))
 
-                (:errors reason)))}))
+                 (:errors reason)))}))
+
+(comment
+  (create-account {:account/id "12000" :account/name "een rekening" :account/type :ast}))
 
 (defn fetch-accounts []
   (crux/q
     (crux/db crux-node)
-    '{:find [?act ?id ?nm ?tp ?lvl]
-      :where [[?act :account/id ?id]
-              [?act :account/name ?nm]
-              [?act :account/type ?tp]
-              [?act :account/summary-level ?lvl]
-              [?act :account/summary-level 0]]
+    '{:find     [?act ?id ?nm ?tp ?lvl]
+      :where    [[?act :account/id ?id]
+                 [?act :account/name ?nm]
+                 [?act :account/type ?tp]
+                 [?act :account/summary-level ?lvl]
+                 [?act :account/summary-level 0]]
       :order-by [[?id :asc]]}))
+
+(comment (fetch-accounts))
 
 (defn fetch-accounts-by-summary-level [lvl]
   (crux/q
     (crux/db crux-node)
-    '{:find [?act ?id ?nm ?tp ?lvl]
-      :where [[?act :account/id ?id]
-              [?act :account/name ?nm]
-              [?act :account/type ?tp]
-              [?act :account/summary-level ?lvl]]
-      :in [?lvl]
+    '{:find     [?act ?id ?nm ?tp ?lvl]
+      :where    [[?act :account/id ?id]
+                 [?act :account/name ?nm]
+                 [?act :account/type ?tp]
+                 [?act :account/summary-level ?lvl]]
+      :in       [?lvl]
       :order-by [[?id :asc]]}
     lvl))
+
+(comment (fetch-accounts-by-summary-level 1))
 
 (defn fetch-account-by-id
   "Fetch an account by id"
   [id]
   (crux/q
     (crux/db crux-node)
-    '{:find [?act ?id ?nm ?tp ?lvl]
-      :where [[?act :account/id ?id]
-              [?act :account/name ?nm]
-              [?act :account/type ?tp]
-              [?act :account/summary-level ?lvl]
-              [?act :account/summary-level 0]]
-      :in [?id]
+    '{:find     [?act ?id ?nm ?tp ?lvl]
+      :where    [[?act :account/id ?id]
+                 [?act :account/name ?nm]
+                 [?act :account/type ?tp]
+                 [?act :account/summary-level ?lvl]]
+                 ;[?act :account/summary-level 0]]
+      :in       [?id]
       :order-by [[?id :asc]]}
     id))
+
+(comment
+  (fetch-account-by-id "80100"))
+
+
+(defn pull-account-by-id
+  [id]
+  (ffirst
+    (crux/q
+      (crux/db crux-node)
+      '{:find [(pull ?act [*])]
+        :in [?id]
+        :where [[?act :account/id ?id]]}
+      id)))
+
+(comment
+  (pull-account-by-id "12010"))
 
 (defn fetch-accounts-by-type
   "Fetch an account by account-type"
   [tp]
   (crux/q
     (crux/db crux-node)
-    '{:find [?act ?id ?nm ?tp ?lvl]
-      :where [[?act :account/id ?id]
-              [?act :account/name ?nm]
-              [?act :account/type ?tp]
-              [?act :account/summary-level ?lvl]
-              [?act :account/summary-level 0]]
-      :in [?tp]
+    '{:find     [?act ?id ?nm ?tp ?lvl]
+      :where    [[?act :account/id ?id]
+                 [?act :account/name ?nm]
+                 [?act :account/type ?tp]
+                 [?act :account/summary-level ?lvl]
+                 [?act :account/summary-level 0]]
+      :in       [?tp]
       :order-by [[?id :asc]]}
     tp))
 
@@ -126,7 +150,6 @@
 
 (comment
   "Some repl testing code"
-
   (count (fetch-accounts))
   (time (fetch-account-by-id "80200"))
   (time (fetch-accounts-by-type :cst))
@@ -140,5 +163,4 @@
                  :account/type          :prf
                  :account/summary-level 0}]
     ;(m/validate Account account)
-    (m/explain Account account))
-  ,)
+    (m/explain Account account)),)

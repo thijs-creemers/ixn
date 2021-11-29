@@ -1,6 +1,6 @@
 (ns ixn.money
   (:require
-            [malli.core :as m]))
+   [malli.core :as m]))
 
 (defn round
   "Round a double to the given precision (number of significant digits)"
@@ -9,10 +9,10 @@
     (/ (Math/round (* d factor)) factor)))
 
 (def Money
-   [:cat int? [:int {:min 0 :max 5}]])
+  [:cat int? [:int {:min 0 :max 5}]])
 
 (defn money? [val]
- (m/validate Money val))
+  (m/validate Money val))
 
 (defn ->money
   "a money value consists of a vector with 3 values `money represented as long int`, `precision int` and the `original value`."
@@ -50,14 +50,14 @@
 (defn multiply
   "multiply"
   [& args]
-  [(apply * (map (fn [[v _ ]] v) args))
-   (apply min (map (fn [[_ v ]] v) args))])
+  [(apply * (map (fn [[v _]] v) args))
+   (apply min (map (fn [[_ v]] v) args))])
 
 (defn divide
   "divide"
   [& args]
-  [(apply / (map (fn [[v _ ]] v) args))
-   (apply min (map (fn [[_ v ]] v) args))])
+  [(apply / (map (fn [[v _]] v) args))
+   (apply min (map (fn [[_ v]] v) args))])
 
 (comment
   ;; some REPL tests
@@ -68,4 +68,3 @@
   (rounded 12.344)
   (apply min [1 2 3 4])
   (->money 12.345))
-
