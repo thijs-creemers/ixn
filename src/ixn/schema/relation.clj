@@ -1,10 +1,6 @@
 (ns ixn.schema.relation
   (:require [ixn.schema.core :refer [NotEmptyString]]
-            ;[clojure.tools.logging :as log]
-            ;[malli.core :as m]
-            ;[malli.error :as me]
             [malli.generator :as mg]))
-            ;; [clojure.tools.reader.edn :as edn])
 
 
 (declare City)
@@ -24,8 +20,10 @@
                [:re {:error-message {:en "Invalid country prefix." :nl "Ongeldig landnummer."}} #"^\+[0-9]{2,3}$"]]
               [:country/currency {:en "currency" :nl "valuta"} string?]
               [:country/capital {:en "capital" :nl "hoofdstad"} City]])
+
 (comment
   (map (fn [_] (mg/generate Country)) (range 10)))
+
 
 (def City [:map {:closed? true? :title {:en "city" :nl "plaats"}}
            [:city/id {:title {:en "id" :nl "id"}} uuid?]
@@ -36,11 +34,15 @@
 (comment
   (map (fn [_] (mg/generate City)) (range 10)))
 
+
 (def AddressType [:enum {:title {:en "address type" :nl "soort adres"}} :home :office])
+
 
 (def Latitude [:and double? [:> -90] [:< 90]])
 
+
 (def Longitude [:and double? [:> -180] [:< 180]])
+
 
 (def Address [:map {:closed? true :title {:en "address" :nl "adres"}}
               [:address/id {:title {:en "id" :nl "id"}} uuid?]
@@ -54,6 +56,7 @@
                 [:lat {:title {:en "lattitude" :nl "breedtegraad"}} Latitude]
                 [:lon {:title {:en "longitude" :nl "lengtegraad"}} Longitude]]]])
 
+
 (def CommunicationPlatform [:enum
                             {:title {:en "communication type" :nl "communicatie type"}}
                             :email :phone :linkedin :facebook :instagram])
@@ -61,12 +64,16 @@
 (comment
   (mg/generate Address)
   (mg/generate CommunicationPlatform))
+
+
 (def Communication [:map {:closed true :title {:en "Communication medium" :nl "Communicatie medium"}}
                     [:communication/id {:title {:en "id" :nl "id"}} uuid?]
                     [:communication/platform CommunicationPlatform]
                     [:communication/address string?]])      ; need some validation per type
 
+
 (def Gender [:enum {:title {:en "gender" :nl "geslacht"}} :male :female :unknown])
+
 
 (def Relation [:map {:title {:en "relation" :nl "relatie"}}
                [:relation/id {:title {:en "id" :nl "id"}} uuid?]

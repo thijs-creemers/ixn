@@ -1,6 +1,5 @@
 (ns ixn.money
-  (:require
-   [malli.core :as m]))
+  (:require [malli.core :as m]))
 
 (defn round
   "Round a double to the given precision (number of significant digits)"

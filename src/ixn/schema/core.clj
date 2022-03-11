@@ -11,7 +11,7 @@
                       [:fn {:error/message "String must be in uppercase characters."}
                        #(= % (string/upper-case %))]])
 
-(defn ff-uitproberen []
-  (println "Hallo")
-  (+ (* 2 3)
-     (+ 2 4))
+(def LowercaseString [:and
+                      string?
+                      [:fn {:error/message "String must be in lowercase characters."}
+                       #(= % (string/lower-case %))]])

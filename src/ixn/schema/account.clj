@@ -1,8 +1,8 @@
 (ns ixn.schema.account
   (:require [clojure.tools.logging :as log]
             [clojure.tools.reader.edn :as edn]
-            [crux.api :as crux]
-            [ixn.db :refer [crux-node transact!]]
+            [xtdb.api :as xtdb]
+            [ixn.db :refer [xtdb-node transact!]]
             [ixn.schema.core :refer [NotEmptyString]]
             [malli.core :as m]))
 
@@ -66,8 +66,8 @@
   (create-account {:account/id "12000" :account/name "een rekening" :account/type :ast}))
 
 (defn fetch-accounts []
-  (crux/q
-    (crux/db crux-node)
+  (xtdb/q
+    (xtdb/db xtdb-node)
     '{:find     [?act ?id ?nm ?tp ?lvl]
       :where    [[?act :account/id ?id]
                  [?act :account/name ?nm]
@@ -79,8 +79,8 @@
 (comment (fetch-accounts))
 
 (defn fetch-accounts-by-summary-level [lvl]
-  (crux/q
-    (crux/db crux-node)
+  (xtdb/q
+    (xtdb/db xtdb-node)
     '{:find     [?act ?id ?nm ?tp ?lvl]
       :where    [[?act :account/id ?id]
                  [?act :account/name ?nm]
@@ -95,8 +95,8 @@
 (defn fetch-account-by-id
   "Fetch an account by id"
   [id]
-  (crux/q
-    (crux/db crux-node)
+  (xtdb/q
+    (xtdb/db xtdb-node)
     '{:find     [?act ?id ?nm ?tp ?lvl]
       :where    [[?act :account/id ?id]
                  [?act :account/name ?nm]
@@ -114,8 +114,8 @@
 (defn pull-account-by-id
   [id]
   (ffirst
-    (crux/q
-      (crux/db crux-node)
+    (xtdb/q
+      (xtdb/db xtdb-node)
       '{:find [(pull ?act [*])]
         :in [?id]
         :where [[?act :account/id ?id]]}
@@ -127,8 +127,8 @@
 (defn fetch-accounts-by-type
   "Fetch an account by account-type"
   [tp]
-  (crux/q
-    (crux/db crux-node)
+  (xtdb/q
+    (xtdb/db xtdb-node)
     '{:find     [?act ?id ?nm ?tp ?lvl]
       :where    [[?act :account/id ?id]
                  [?act :account/name ?nm]

@@ -1,16 +1,16 @@
-{:paths   ["src"]
+{:paths   ["src" "test"]
  ;; --add-opens and --illegal-access=permit (or --illegal-access= warn) to prevent java 16 from crashing with crux
  :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
             ;"--add-opens java.base/java.util.concurrent=ALL-UNNAMED"
             ;"--illegal-access=permit"]
  :deps    {org.clojure/clojure            {:mvn/version "1.10.3"}
 
-           ;; crux db
-           juxt/crux-core                 {:mvn/version "21.06-1.17.1-beta"}
-           juxt/crux-rocksdb              {:mvn/version "21.06-1.17.1-beta"}
+           ;; xtdb db
+           com.xtdb/xtdb-core {:mvn/version "1.20.0"}
+           com.xtdb/xtdb-rocksdb {:mvn/version "1.20.0"}
 
            ;; Full text
-           juxt/crux-lucene               {:mvn/version "21.06-1.17.1-alpha"}
+           ;juxt/crux-lucene               {:mvn/version "21.06-1.17.1-alpha"}
 
            ;; schemas
            metosin/malli                  {:mvn/version "0.5.1"}
