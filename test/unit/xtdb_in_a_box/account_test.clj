@@ -1,5 +1,5 @@
 (ns unit.xtdb-in-a-box.account_test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest testing is]]
             [ixn.schema.account :refer [create-account calc-summary-level]]))
 
 (deftest test-create-account
