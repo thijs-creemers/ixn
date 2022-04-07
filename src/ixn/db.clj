@@ -1,8 +1,8 @@
 (ns ixn.db
   (:require
-    [clojure.java.io :as io]
-    [xtdb.api :as xt]
-    [ixn.utils :refer [uuid]]))
+   [clojure.java.io :as io]
+   [xtdb.api :as xt]
+   [ixn.utils :refer [uuid]]))
 
 (defn start-xtdb! []
   (letfn [(kv-store [dir]
@@ -10,9 +10,9 @@
                         :db-dir      (io/file dir)
                         :sync?       true}})]
     (xt/start-node
-      {:xtdb/tx-log         (kv-store "data/dev/tx-log")
-       :xtdb/document-store (kv-store "data/dev/doc-store")
-       :xtdb/index-store    (kv-store "data/dev/index-store")})))
+     {:xtdb/tx-log         (kv-store "data/dev/tx-log")
+      :xtdb/document-store (kv-store "data/dev/doc-store")
+      :xtdb/index-store    (kv-store "data/dev/index-store")})))
 
 (def xtdb-node
   (try
@@ -42,18 +42,17 @@
                      vec)))
 
 (comment
-   (start-xtdb!)
+  (start-xtdb!)
 
-   xtdb-node
-   (xt/submit-tx xtdb-node [[::xt/put {:xt/id "6"
-                                       :user/name "Nienke"
-                                       :user/last-name "Creemers"}]])
-   (xt/q (xt/db xtdb-node) '{:find  [e fn ln]
-                             :where [[e :user/name fn]
-                                     [e :user/last-name ln]]})
-   (xt/q
-     (xt/db xtdb-node)
-     '{:find  [(pull ?account [*])]
-       :where [[?account :account/summary-level 3]]})
-
-   ,)
+  xtdb-node
+  (xt/submit-tx xtdb-node [[::xt/put {:xt/id "6"
+                                      :user/name "Nienke"
+                                      :user/last-name "Creemers"}]])
+  (xt/q (xt/db xtdb-node) '{:find  [e fn ln]
+                            :where [[e :user/name fn]
+                                    [e :user/last-name ln]]})
+  (count (xt/q
+          (xt/db xtdb-node)
+          '{:find  [(pull ?account [*])]
+            :where [[?account :account/summary-level 0]
+                    [?account :account/type :ast]]})))

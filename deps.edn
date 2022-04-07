@@ -1,35 +1,44 @@
-{:paths   ["src" "test"]
- ;; --add-opens and --illegal-access=permit (or --illegal-access= warn) to prevent java 16 from crashing with crux
+{:paths    ["src" "test"]
  :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
-            ;"--add-opens java.base/java.util.concurrent=ALL-UNNAMED"
-            ;"--illegal-access=permit"]
- :deps    {org.clojure/clojure            {:mvn/version "1.10.3"}
+ :deps     {org.clojure/clojure            {:mvn/version "1.11.0"}
 
-           ;; xtdb db
-           com.xtdb/xtdb-core {:mvn/version "1.20.0"}
-           com.xtdb/xtdb-rocksdb {:mvn/version "1.20.0"}
+            ;; xtdb db
+            com.xtdb/xtdb-core             {:mvn/version "1.20.0"}
+            com.xtdb/xtdb-rocksdb          {:mvn/version "1.20.0"}
 
-           ;; Full text
-           ;juxt/crux-lucene               {:mvn/version "21.06-1.17.1-alpha"}
+            ;; Full text
+            ;juxt/crux-lucene               {:mvn/version "21.06-1.17.1-alpha"}
 
-           ;; schemas
-           metosin/malli                  {:mvn/version "0.5.1"}
-           com.gfredericks/test.chuck     {:mvn/version "0.2.11"} ;; needed for malli generator regex.
-           kovacnica/clojure.network.ip   {:mvn/version "0.1.3"} ;; ip address logic
+            ;; schemas
+            metosin/malli                  {:mvn/version "0.8.4"}
+            com.gfredericks/test.chuck     {:mvn/version "0.2.13"} ;; needed for malli generator regex.
+            ;kovacnica/clojure.network.ip   {:mvn/version "0.1.3"} ;; ip address logic
 
-           ;; logging:
-           org.clojure/tools.logging      {:mvn/version "1.1.0"}
-           ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
-           ch.qos.logback/logback-core    {:mvn/version "1.2.3"}
-           org.slf4j/slf4j-api            {:mvn/version "1.7.31"}}
+            ;; API
+            ;io.pedestal/pedestal.service   {:mvn/version "0.5.10"}
+            ;io.pedestal/pedestal.route     {:mvn/version "0.5.10"}
+            ;io.pedestal/pedestal.immutant  {:mvn/version "0.5.10"}
 
- :aliases {;; global aliases are defined in .clojure/.deps.edn
-           ;;
-           ;; :test       - run tests with koacha.runner.
-           ;; :outdated   - find packages that are outdated $ clj -M:outdated
-           ;; :clj-kondo  - run code check: $ clj -M:clj-kondo
-           ;; :nrepl      - start an nREPL server on a random available port:
-           ;; :liquid     - see https://github.com/mogenslund/liquid
-           ;; :uberjar    - create app as uberjar
-           :uberjar   {:extra-deps {uberdeps/uberdeps {:mvn/version "1.0.4"}}
-                       :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}}}
+            ;; Environment
+            environ/environ                {:mvn/version "1.2.0"}
+
+            ;; Libs
+            clojurewerkz/money             {:mvn/version "1.10.0"}
+            org.joda/joda-money            {:mvn/version "0.10.0"}
+
+            ;; logging:
+            org.clojure/tools.logging      {:mvn/version "1.2.4"}
+            ch.qos.logback/logback-classic {:mvn/version "1.2.11"}
+            ch.qos.logback/logback-core    {:mvn/version "1.2.11"}
+            org.slf4j/slf4j-api            {:mvn/version "1.7.36"}}
+
+ ;; global aliases are defined in .clojure/.deps.edn
+ :aliases  {
+            :uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.1.4"}}
+                      :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}}}
+;; :test       - run tests with koacha.runner.
+;; :outdated   - find packages that are outdated $ clj -M:outdated}}
+;; :clj-kondo  - run code check: $ clj -M:clj-kondo
+;; :nrepl      - start an nREPL server on a random available port:
+;; :liquid     - see https://github.com/mogenslund/liquid
+;; :uberjar    - create app as uberjar
