@@ -1,6 +1,6 @@
 {:paths    ["src" "test"]
  :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
- :deps     {org.clojure/clojure            {:mvn/version "1.11.0"}
+ :deps     {org.clojure/clojure            {:mvn/version "1.11.1"}
 
             ;; xtdb db
             com.xtdb/xtdb-core             {:mvn/version "1.20.0"}
@@ -12,7 +12,6 @@
             ;; schemas
             metosin/malli                  {:mvn/version "0.8.4"}
             com.gfredericks/test.chuck     {:mvn/version "0.2.13"} ;; needed for malli generator regex.
-            ;kovacnica/clojure.network.ip   {:mvn/version "0.1.3"} ;; ip address logic
 
             ;; API
             ;io.pedestal/pedestal.service   {:mvn/version "0.5.10"}
@@ -23,8 +22,8 @@
             environ/environ                {:mvn/version "1.2.0"}
 
             ;; Libs
-            clojurewerkz/money             {:mvn/version "1.10.0"}
-            org.joda/joda-money            {:mvn/version "0.10.0"}
+            clj-http/clj-http              {:mvn/version "3.12.3"}
+            metosin/jsonista               {:mvn/version "0.3.5"}
 
             ;; logging:
             org.clojure/tools.logging      {:mvn/version "1.2.4"}
