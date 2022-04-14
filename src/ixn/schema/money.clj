@@ -1,13 +1,16 @@
-(ns ixn.money
+(ns ixn.schema.money
   (:require [clojure.string :as str]
-            [ixn.currency :as ic]
+            [ixn.schema.currency :as ic]
             [malli.core :as m]))
 
 
 ;; Malli definition
 (def Money
   [:map {:closed true :en "money" :nl "geld"}
-   [:money/currency {:en "currency" :nl "valuta"} keyword?]
+   [:money/currency {:en "currency" :nl "valuta"}  (-> ic/currencies
+                                                       keys
+                                                       (conj :enum)
+                                                       vec)]
    [:money/value {:en "value" :nl "waarde"} int?]])
 
 
@@ -43,7 +46,7 @@
   "Return a big decimal value."
   [money-value]
   (let [value (:money/value money-value)
-        currency-rec ((:money/currency money-value) ic/currencies)
+        currency-rec ((get money-value :money/currency :EUR) ic/currencies)
         decimals (:currency/decimals currency-rec)]
     (bigdec (/ value (Math/pow 10 decimals)))))
 
@@ -70,7 +73,7 @@
 
 
 
-(defn- ->money-from-value
+(defn ->money-from-value
   "returns a money value"
   ([currency value]
    {:money/currency currency

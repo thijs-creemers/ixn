@@ -1,8 +1,11 @@
 (ns ixn.db
   (:require
    [clojure.java.io :as io]
+   [clojure.tools.logging :as log]
    [xtdb.api :as xt]
    [ixn.utils :refer [uuid]]))
+
+(defonce xtdb-state (atom {:started false :xtdb nil}))
 
 (defn start-xtdb! []
   (letfn [(kv-store [dir]
@@ -15,31 +18,35 @@
       :xtdb/index-store    (kv-store "data/dev/index-store")})))
 
 (def xtdb-node
-  (try
-    (let [xtdb (start-xtdb!)]
-      (prn "XTDB-Node started")
-      xtdb)
-    (catch clojure.lang.ExceptionInfo e
-      (prn "Caught " e))))
+  (if (:started @xtdb-state)
+    (:xtdb @xtdb-state)
+    (try
+      (do
+        (reset! xtdb-state {:started true :xtdb (start-xtdb!)})
+        (prn "XTDB-Node started")
+        (:xtdb @xtdb-state))
+      (catch clojure.lang.ExceptionInfo e
+        (log/error (str "Caught " e))))))
 
 
 (defn stop-xtdb! []
-  (.close xtdb-node))
+  (.close xtdb-node)
+  (reset! xtdb-state {:started false :xtdb nil}))
 
 
 (defn prepare-list-of-maps
   "Get a list of maps and prepare them to be stored in XTDB DB"
   [data]
   (mapv (fn [v]
-          [:xtdb.tx/put (assoc-in v [:xtdb.db/id] (uuid))]) data))
+          [::xt/put (assoc-in v [:xt/id] (uuid))]) data)) ;:xtdb.tx/put
 
 (defn transact!
   "Store a list of maps in XTDB"
   [list-of-maps]
-  (xt/submit-tx xtdb-node
-                (->> list-of-maps
-                     prepare-list-of-maps
-                     vec)))
+  (xt/submit-tx
+    xtdb-node
+    (->> list-of-maps
+         prepare-list-of-maps)))
 
 (comment
   (start-xtdb!)
@@ -51,6 +58,11 @@
   (xt/q (xt/db xtdb-node) '{:find  [e fn ln]
                             :where [[e :user/name fn]
                                     [e :user/last-name ln]]})
+  (xt/q
+    (xt/db xtdb-node)
+    '{:find [pull ?invoice [*]]
+      :where [[?invoice :transaction/sub-admin "123"]]})
+
   (count (xt/q
           (xt/db xtdb-node)
           '{:find  [(pull ?account [*])]

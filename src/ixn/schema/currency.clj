@@ -1,4 +1,4 @@
-(ns ixn.currency
+(ns ixn.schema.currency
   (:require [clj-http.client :as client]
             [jsonista.core :as json]))
 
@@ -17,7 +17,7 @@
 (def currencies
   {:EUR {:currency/iso-code "EUR" :currency/iso-numeric "978" :currency/symbol "€"  :currency/decimals 2 :currency/name "Euro"}
    :USD {:currency/iso-code "USD" :currency/iso-numeric "840" :currency/symbol "$"  :currency/decimals 2 :currency/name "US Dollar"}
-   :GBP {:currency/iso-code "GBP" :currency/iso-numeric "826" :currency/symbol "£"  :currency/decimals 2 :currency/name "Britush Pound"}
+   :GBP {:currency/iso-code "GBP" :currency/iso-numeric "826" :currency/symbol "£"  :currency/decimals 2 :currency/name "British Pound"}
    :CHF {:currency/iso-code "CHF" :currency/iso-numeric "756" :currency/symbol "Fr" :currency/decimals 2 :currency/name "Swiss franc"}
    :AUD {:currency/iso-code "AUD" :currency/iso-numeric "036" :currency/symbol "$"  :currency/decimals 2 :currency/name "Australian dollar"}
    :JPY {:currency/iso-code "JPY" :currency/iso-numeric "392" :currency/symbol "¥"  :currency/decimals 2 :currency/name "Japanese Yen"}
