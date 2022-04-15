@@ -1,4 +1,4 @@
-{:paths    ["src" "test"]
+{:paths    ["src" "test" "resources"]
  :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
  :deps     {org.clojure/clojure            {:mvn/version "1.11.1"}
 
@@ -14,16 +14,21 @@
             com.gfredericks/test.chuck     {:mvn/version "0.2.13"} ;; needed for malli generator regex.
 
             ;; API
-            ;io.pedestal/pedestal.service   {:mvn/version "0.5.10"}
-            ;io.pedestal/pedestal.route     {:mvn/version "0.5.10"}
+            io.pedestal/pedestal.service   {:mvn/version "0.5.10"}
+            io.pedestal/pedestal.route     {:mvn/version "0.5.10"}
             ;io.pedestal/pedestal.immutant  {:mvn/version "0.5.10"}
+            io.pedestal/pedestal.jetty     {:mvn/version "0.5.10"}
 
-            ;; Environment
+            ;; Environment / Setup
+            integrant                      {:mvn/version "0.8.0"}
             environ/environ                {:mvn/version "1.2.0"}
 
             ;; Libs
             clj-http/clj-http              {:mvn/version "3.12.3"}
             metosin/jsonista               {:mvn/version "0.3.5"}
+            metosin/muuntaja               {:mvn/version "0.6.0-alpha1"}
+            rum/rum                        {:mvn/version "0.12.9"}
+            clj-time/clj-time              {:mvn/version "0.15.2"}
 
             ;; logging:
             org.clojure/tools.logging      {:mvn/version "1.2.4"}
@@ -32,8 +37,7 @@
             org.slf4j/slf4j-api            {:mvn/version "1.7.36"}}
 
  ;; global aliases are defined in .clojure/.deps.edn
- :aliases  {
-            :uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.1.4"}}
+ :aliases  {:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.1.4"}}
                       :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}}}
 ;; :test       - run tests with koacha.runner.
 ;; :outdated   - find packages that are outdated $ clj -M:outdated}}

@@ -67,28 +67,28 @@
 
 (defn fetch-accounts []
   (xtdb/q
-    (xtdb/db xtdb-node)
-    '{:find     [?act ?id ?nm ?tp ?lvl]
-      :where    [[?act :account/id ?id]
-                 [?act :account/name ?nm]
-                 [?act :account/type ?tp]
-                 [?act :account/summary-level ?lvl]
-                 [?act :account/summary-level 0]]
-      :order-by [[?id :asc]]}))
+   (xtdb/db xtdb-node)
+   '{:find     [?act ?id ?nm ?tp ?lvl]
+     :where    [[?act :account/id ?id]
+                [?act :account/name ?nm]
+                [?act :account/type ?tp]
+                [?act :account/summary-level ?lvl]
+                [?act :account/summary-level 0]]
+     :order-by [[?id :asc]]}))
 
 (comment (fetch-accounts))
 
 (defn fetch-accounts-by-summary-level [lvl]
   (xtdb/q
-    (xtdb/db xtdb-node)
-    '{:find     [?act ?id ?nm ?tp ?lvl]
-      :where    [[?act :account/id ?id]
-                 [?act :account/name ?nm]
-                 [?act :account/type ?tp]
-                 [?act :account/summary-level ?lvl]]
-      :in       [?lvl]
-      :order-by [[?id :asc]]}
-    lvl))
+   (xtdb/db xtdb-node)
+   '{:find     [?act ?id ?nm ?tp ?lvl]
+     :where    [[?act :account/id ?id]
+                [?act :account/name ?nm]
+                [?act :account/type ?tp]
+                [?act :account/summary-level ?lvl]]
+     :in       [?lvl]
+     :order-by [[?id :asc]]}
+   lvl))
 
 (comment (fetch-accounts-by-summary-level 1))
 
@@ -96,30 +96,29 @@
   "Fetch an account by id"
   [id]
   (xtdb/q
-    (xtdb/db xtdb-node)
-    '{:find     [?act ?id ?nm ?tp ?lvl]
-      :where    [[?act :account/id ?id]
-                 [?act :account/name ?nm]
-                 [?act :account/type ?tp]
-                 [?act :account/summary-level ?lvl]]
+   (xtdb/db xtdb-node)
+   '{:find     [?act ?id ?nm ?tp ?lvl]
+     :where    [[?act :account/id ?id]
+                [?act :account/name ?nm]
+                [?act :account/type ?tp]
+                [?act :account/summary-level ?lvl]]
                  ;[?act :account/summary-level 0]]
-      :in       [?id]
-      :order-by [[?id :asc]]}
-    id))
+     :in       [?id]
+     :order-by [[?id :asc]]}
+   id))
 
 (comment
   (fetch-account-by-id "80100"))
 
-
 (defn pull-account-by-id
   [id]
   (ffirst
-    (xtdb/q
-      (xtdb/db xtdb-node)
-      '{:find [(pull ?act [*])]
-        :in [?id]
-        :where [[?act :account/id ?id]]}
-      id)))
+   (xtdb/q
+    (xtdb/db xtdb-node)
+    '{:find [(pull ?act [*])]
+      :in [?id]
+      :where [[?act :account/id ?id]]}
+    id)))
 
 (comment
   (pull-account-by-id "12010"))
@@ -128,16 +127,16 @@
   "Fetch an account by account-type"
   [tp]
   (xtdb/q
-    (xtdb/db xtdb-node)
-    '{:find     [?act ?id ?nm ?tp ?lvl]
-      :where    [[?act :account/id ?id]
-                 [?act :account/name ?nm]
-                 [?act :account/type ?tp]
-                 [?act :account/summary-level ?lvl]
-                 [?act :account/summary-level 0]]
-      :in       [?tp]
-      :order-by [[?id :asc]]}
-    tp))
+   (xtdb/db xtdb-node)
+   '{:find     [?act ?id ?nm ?tp ?lvl]
+     :where    [[?act :account/id ?id]
+                [?act :account/name ?nm]
+                [?act :account/type ?tp]
+                [?act :account/summary-level ?lvl]
+                [?act :account/summary-level 0]]
+     :in       [?tp]
+     :order-by [[?id :asc]]}
+   tp))
 
 (defn import-accounts-fixture
   []
@@ -163,4 +162,4 @@
                  :account/type          :prf
                  :account/summary-level 0}]
     ;(m/validate Account account)
-    (m/explain Account account)),)
+    (m/explain Account account)))

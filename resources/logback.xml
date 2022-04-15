@@ -28,7 +28,7 @@
             <!-- 60 days to keep -->
             <maxHistory>60</maxHistory>
         </rollingPolicy>
-
+    </appender>
 <!--        <encoder>-->
 <!--            <pattern>%d %p %c{1.} [%t] %m%n</pattern>-->
 <!--        </encoder>-->
