@@ -28,11 +28,9 @@
       (catch clojure.lang.ExceptionInfo e
         (log/error (str "Caught " e))))))
 
-
 (defn stop-xtdb! []
   (.close xtdb-node)
   (reset! xtdb-state {:started false :xtdb nil}))
-
 
 (defn prepare-list-of-maps
   "Get a list of maps and prepare them to be stored in XTDB DB"
@@ -44,9 +42,9 @@
   "Store a list of maps in XTDB"
   [list-of-maps]
   (xt/submit-tx
-    xtdb-node
-    (->> list-of-maps
-         prepare-list-of-maps)))
+   xtdb-node
+   (->> list-of-maps
+        prepare-list-of-maps)))
 
 (comment
   (start-xtdb!)
@@ -59,12 +57,18 @@
                             :where [[e :user/name fn]
                                     [e :user/last-name ln]]})
   (xt/q
-    (xt/db xtdb-node)
-    '{:find [pull ?invoice [*]]
-      :where [[?invoice :transaction/sub-admin "123"]]})
+   (xt/db xtdb-node)
+   '{:find [pull ?invoice [*]]
+     :where [[?invoice :transaction/sub-admin "123"]]})
 
   (count (xt/q
           (xt/db xtdb-node)
           '{:find  [(pull ?account [*])]
             :where [[?account :account/summary-level 0]
-                    [?account :account/type :ast]]})))
+                    [?account :account/type :ast]]}))
+
+  (let [q '{:find [(pull ?e [:object_type/id :name
+                             {:property_types [:name :data_type :unit :visible]}])]
+            :where [[?e :name "%s"]
+                    [?e :data_type "enumeration"]]}])
+  ...)

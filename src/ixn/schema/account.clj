@@ -36,6 +36,7 @@
    [:account/type {:title {:en "account type" :nl "rekening type"}} AccountType]
    [:account/summary-level {:title {:en "summary level" :nl "verdichtingsniveau"}} SummaryLevel]]) ; summary level is function of id
 
+
 ;; Functions
 (defn calc-summary-level
   "The summary level indicates the level of summary,
@@ -45,6 +46,7 @@
   (if (<= (count account-number) 5)
     (nth (reverse (range 6)) (count account-number))
     -1))
+
 
 (defn create-account
   "Create an account type, the summary level is calculated from the account-number"
@@ -65,6 +67,7 @@
 (comment
   (create-account {:account/id "12000" :account/name "een rekening" :account/type :ast}))
 
+
 (defn fetch-accounts []
   (xtdb/q
    (xtdb/db xtdb-node)
@@ -77,6 +80,7 @@
      :order-by [[?id :asc]]}))
 
 (comment (fetch-accounts))
+
 
 (defn fetch-accounts-by-summary-level [lvl]
   (xtdb/q
@@ -91,6 +95,7 @@
    lvl))
 
 (comment (fetch-accounts-by-summary-level 1))
+
 
 (defn fetch-account-by-id
   "Fetch an account by id"
@@ -110,8 +115,10 @@
 (comment
   (fetch-account-by-id "80100"))
 
+
 (defn pull-account-by-id
   [id]
+  (xtdb/pull (xtdb/db xtdb-node) [:account/id :account/name :account/type :account/summary-level] id)
   (ffirst
    (xtdb/q
     (xtdb/db xtdb-node)
@@ -122,6 +129,27 @@
 
 (comment
   (pull-account-by-id "12010"))
+
+
+(defn pull-all-accounts
+  "return all accounts with summary level 0"
+  [{:keys [sort-on order limit offset]}]
+
+  (let [my-limit (if (and limit (> limit 0)) limit 10)
+        my-offset (if offset offset 0)
+        data (->> (xtdb/q
+                    (xtdb/db xtdb-node)
+                    '{:find [(pull ?account [*])]
+                      :where [[?account :account/summary-level 0]]})
+                  (map first)
+                  (sort #(compare (sort-on %1) (sort-on %2)))
+                  (drop my-offset)
+                  (take my-limit))]
+    (if (= order :asc) data (reverse data))))
+
+(comment
+  (pull-all-accounts {:sort-on :account/id :order :asc}))
+
 
 (defn fetch-accounts-by-type
   "Fetch an account by account-type"
@@ -137,6 +165,7 @@
      :in       [?tp]
      :order-by [[?id :asc]]}
    tp))
+
 
 (defn import-accounts-fixture
   []

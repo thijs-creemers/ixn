@@ -6,6 +6,7 @@
    [io.pedestal.http.route :as route]
    [io.pedestal.test]
    [ixn.financial.chart-of-accounts :as coa]
+   [ixn.schema.account :refer [pull-all-accounts]]
    [jsonista.core :as json]
    [rum.core :as rum]))
 
@@ -45,11 +46,11 @@
     [:script {:src "/htmx.js.min" :defer "true" :type "application/javascript"}]]
    [:body.bg-gray-30.black-70.pa4.avenir
     [:div.fl.w-100
-     [:div.fl.w-20 "FF"]
+     ;[:div.fl.w-20 "FF"]
      [:div.fl.w-80 body-content]]]])
 
 (defn get-accounts [_]
-  (let [all-accounts (coa/all-accounts {})]
+  (let [all-accounts (pull-all-accounts {:sort-on :account/id :order :asc})]
     {:status 200
      :body   all-accounts}))
 
