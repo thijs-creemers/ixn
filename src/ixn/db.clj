@@ -17,6 +17,7 @@
       :xtdb/document-store (kv-store "data/dev/doc-store")
       :xtdb/index-store    (kv-store "data/dev/index-store")})))
 
+
 (def xtdb-node
   (if (:started @xtdb-state)
     (:xtdb @xtdb-state)

@@ -3,7 +3,6 @@
             [ixn.schema.currency :as ic]
             [malli.core :as m]))
 
-
 ;; Malli definition
 (def Money
   [:map {:closed true :en "money" :nl "geld"}
@@ -13,25 +12,21 @@
                                                        vec)]
    [:money/value {:en "value" :nl "waarde"} int?]])
 
-
 ;; Constants
 (defonce default-currency :EUR)
 (defonce decimal-separator ",")
 (defonce thousand-separator ".")
 
-
 (defn round
-  [value decimals]
   "Round a double to the given precision (number of significant digits)"
+  [value decimals]
   (let [factor (Math/pow 10 decimals)]
     (/ (Math/round ^Double (* value factor)) factor)))
-
 
 (defn money?
   [val]
   "Check id val is valid Money data."
   (m/validate Money val))
-
 
 (defn ->money
   ([currency-code value]
@@ -51,13 +46,12 @@
     (bigdec (/ value (Math/pow 10 decimals)))))
 
 (defn <-money-value
-  [money-value]
   "Return integer value as registered in money data"
+  [money-value]
   (:money/value money-value))
 
-
 (defn mformat
-  "Format money into string with currency symbol and thousand separation."
+  "Format money into string with currency symbol and a thousand separator."
   [money-value]
   (let [{:currency/keys [symbol decimals]} ((:money/currency money-value) ic/currencies)
         value (str (:money/value money-value))
@@ -71,8 +65,6 @@
                                (str/join thousand-separator))]
     (str symbol " " int-partseparated decimal-separator dec-part)))
 
-
-
 (defn ->money-from-value
   "returns a money value"
   ([currency value]
@@ -81,23 +73,19 @@
   ([value]
    (->money-from-value default-currency value)))
 
-
-
 (defn add
   "Add"
   [& args]
   (->money-from-value (apply + (map (fn [x] (:money/value x)) args))))
-
 
 (defn subtract
   "Subtract"
   [& args]
   (->money-from-value (apply - (map (fn [x] (:money/value x)) args))))
 
-
 (comment
   ;; some REPL tests
   (money?
-    (add (->money 12.3456) (->money 11.33383838)))
+   (add (->money 12.3456) (->money 11.33383838)))
   (money? (subtract (->money 12.3456) (->money 11.33383838)))
   (->money 12.34))

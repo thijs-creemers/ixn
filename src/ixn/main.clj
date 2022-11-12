@@ -2,7 +2,7 @@
   (:require
     ;; [integrant.core :as ig]
    [io.pedestal.http :as http]
-   [io.pedestal.http.content-negotiation :as conneg]
+   [io.pedestal.http.content-negotiation :as cn]
    [io.pedestal.http.route :as route]
    [io.pedestal.test]
    [ixn.financial.chart-of-accounts :as coa]
@@ -11,7 +11,7 @@
    [rum.core :as rum]))
 
 (def supported-types ["text/html" "application/edn" "application/json" "text/plain"])
-(def content-negociation-interceptor (conneg/negotiate-content supported-types))
+(def content-negociation-interceptor (cn/negotiate-content supported-types))
 
 (defn ->json [edn-value]
   (-> edn-value
@@ -37,6 +37,7 @@
               (assoc context :response updated-response)))})
 
 (defn html-doc
+  "Return the basic HTML doc."
   [title body-content]
   [:html
    [:head
@@ -49,7 +50,8 @@
      ;[:div.fl.w-20 "FF"]
      [:div.fl.w-80 body-content]]]])
 
-(defn get-accounts [_]
+(defn get-accounts
+  [_]
   (let [all-accounts (pull-all-accounts {:sort-on :account/id :order :asc})]
     {:status 200
      :body   all-accounts}))
