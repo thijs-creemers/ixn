@@ -6,7 +6,8 @@
    [ixn.schema.journal :refer [JournalType]]
    [ixn.schema.money :refer [->money Money]]
    [ixn.financial.utils :refer [balance line-totals]]
-   [ixn.financial.receivable.transaction :refer [book-sales-invoice]]
+   [ixn.financial.payable.transaction :refer [book-purchase-invoice]]
+   ;[ixn.financial.receivable.transaction :refer [book-sales-invoice]]
    [ixn.utils :refer [now uuid]]
    [malli.core :as m]
    [malli.generator :as mg]
@@ -184,12 +185,5 @@
        :transaction/cost-center ""
        :transaction/sub-admin   ""
        :transaction/amount      7.25
-       :transaction/side        :debit}]))
+       :transaction/side        :debit}])))
 
-  (for [x (range 20)]
-    (balance (book-sales-invoice {:invoice-date     (now)
-                                  :description      "ha"
-                                  :debtor-id        "123"
-                                  :amount           (+ 121.564 x)
-                                  :turnover-account "80100"
-                                  :vat              21}))))

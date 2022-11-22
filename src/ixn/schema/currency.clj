@@ -33,9 +33,9 @@
 
 (defn- fetch-rates
   []
-  (if (< (compare (:date @rates-cache) (date-yesterday)) 0)
+  (when (< (compare (:date @rates-cache) (date-yesterday)) 0)
      (let [{:keys [reason status :body]} (client/get "https://www.currency-api.com/rates")]
-       (if (= (:reason "OK"))
+       (if (= reason "OK")
          (reset! rates-cache (-> body (json/read-value json/keyword-keys-object-mapper)))
          {:error {:status status :reason reason}})))
   (:rates @rates-cache))

@@ -6,7 +6,9 @@
    [ixn.db :refer [transact!]]
    [ixn.schema.money :refer [->money]]
    [ixn.schema.journal :refer [journal-params]]
-   [ixn.financial.utils :refer [balance]]))
+   [ixn.financial.utils :refer [balance]]
+   [malli.generator :as mg]
+   [ixn.schema.transaction :refer [SalesBooking]]))
 
 (defn book-sales-invoice
   "Prepare sales invoice booking."
@@ -25,7 +27,7 @@
            :transaction/account     (get-in journal-params [:sales :accounts-receivable])
            :transaction/description description
            :transaction/cost-center ""
-           :transaction/sub-admin   debtor-id
+           :transaction/sub-admi   debtor-id
            :transaction/amount      (->money invoice-amt)
            :transaction/side        :debit}
 
@@ -73,6 +75,7 @@
 
 (comment
   "Some checks to perform on REPL"
+
   (for [x (range 10000)]
     (do
       (prn "transaction: " x)
@@ -92,9 +95,19 @@
     :amount-high      144.00
     :amount-low       0
     :amount-zero      0
-    :turnover-account "80100"}
-   (every? true?
-           (for [_ (range 2000)]
+    :turnover-account "80100"})
+
+  (every? true?
+           (for [_ (range 1000)]
              (transact! (book-sales-invoice (mg/generate SalesBooking {:seed 10 :size 20})))))
 
-   ()))
+  (for [_ (range 2 22)]
+    (balance (book-sales-invoice {:invoice-date     (now)
+                                  :description      "ha"
+                                  :debtor-id        "123"
+                                  :amount-high       121.564
+                                  :amount-low 0
+                                  :amount-zero 0
+                                  :turnover-account "80100"
+                                  :vat              21})))
+  ())

@@ -4,10 +4,6 @@
    [rum.core :as rum]
    [ixn.schema.account :refer [fetch-account-by-id pull-account-by-id pull-all-accounts]]))
 
-(comment
-  (pull-account-by-id "80100")
-  (fetch-account-by-id "80100")
-  (fetch-account-by-id "12010"))
 
 (rum/defc account-caption
 
@@ -69,9 +65,11 @@
     (account-caption)
     (account-table)]])
 
+
 (comment
-  (fetch-account- "80100")
-  (fetch-account- "12010")
+  (pull-account-by-id "80100")
+  (fetch-account-by-id "80100")
+  (fetch-account-by-id "12010")
   (pull-all-accounts {:sort-on :account/name :order :asc :limit 10})
   (rum/render-html (form))
   (rum/render-html (overview))

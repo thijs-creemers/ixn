@@ -1,18 +1,16 @@
 (ns ixn.financial.payable.transaction
   (:require
-    [clojure.tools.logging :as log]
-    [ixn.db :refer [transact!]]
-    [ixn.financial.utils :refer [balance]]
-    [ixn.schema.journal]
-    [ixn.schema.journal :refer [journal-params]]
-    [ixn.schema.money :refer [->money]]
-    [ixn.schema.transaction :refer [PurchaseBooking TransactionLine]]
-    [ixn.settings :refer [current-book-period subadmin-accounts]]
-    [ixn.utils :refer [now uuid]]
-    [malli.core :as m]))
+   [clojure.tools.logging :as log]
+   [ixn.db :refer [transact!]]
+   [ixn.financial.utils :refer [balance]]
+   [ixn.schema.journal :refer [journal-params]]
+   [ixn.schema.money :refer [->money]]
+   [ixn.schema.transaction :refer [PurchaseBooking TransactionLine]]
+   [ixn.settings :refer [current-book-period subadmin-accounts]]
+   [ixn.utils :refer [now uuid]]
+   [malli.core :as m]))
 
-
-(defn- book-purchase-invoice
+(defn book-purchase-invoice
   "prepare a booking for a sales invoice."
 
   [{:keys [:invoice-date :description :creditor-id :amount-high :amount-low :amount-zero :costs-account] :as booking}]
@@ -37,6 +35,7 @@
                         :transaction/sub-admin   creditor-id
                         :transaction/amount      (->money invoice-amt)
                         :transaction/side        :credit}
+
           costs        {:transaction/id          id
                         :transaction/line        2
                         :transaction/date        invoice-date
@@ -49,6 +48,7 @@
                         :transaction/sub-admin   creditor-id
                         :transaction/amount      (->money costs-amt)
                         :transaction/side        :debit}
+
           vat-high     {:transaction/id          id
                         :transaction/line        3
                         :transaction/date        invoice-date
@@ -61,6 +61,7 @@
                         :transaction/sub-admin   creditor-id
                         :transaction/amount      (->money vat-amt-high)
                         :transaction/side        :debit}
+
           vat-low      {:transaction/id          id
                         :transaction/line        4
                         :transaction/date        invoice-date
@@ -80,31 +81,29 @@
              (filter (fn [x] (not= 0 (get-in x [:transaction/amount :money/value])))))
         (log/error "One of the transaction lines is invalid.")))))
 
-
 (defn transact-purchase-invoice!
   "Check and store a purchase transaction."
   [params]
   (let [booking (book-purchase-invoice params)]
-    (if (and (balance booking))
+    (if (balance booking)
       (transact! booking)
       (log/error (str "Purchase invoice balance for booking " params " is not 0.00")))))
-
 
 (comment
   ;; Transact 1000 purchase order invoices.
   (time
-    (for [x (range 1000)]
-      (do
-        (prn "transaction: " x)
-        (->
-          {:invoice-date  (now)
-           :description   "ha"
-           :creditor-id   "123"
-           :amount-high   100
-           :amount-low    10
-           :amount-zero   0
-           :costs-account "80100"}
-          transact-purchase-invoice!))))
+   (for [x (range 1000)]
+     (do
+       (prn "transaction: " x)
+       (->
+        {:invoice-date  (now)
+         :description   "ha"
+         :creditor-id   "123"
+         :amount-high   100
+         :amount-low    10
+         :amount-zero   0
+         :costs-account "80100"}
+        transact-purchase-invoice!))))
 
   (m/validate TransactionLine {:transaction/id          (uuid)
                                :transaction/line        1
@@ -119,4 +118,3 @@
                                :transaction/amount      (->money 100)
                                :transaction/side        :credit})
   ())
-

@@ -22,10 +22,9 @@
   (if (:started @xtdb-state)
     (:xtdb @xtdb-state)
     (try
-      (do
-        (reset! xtdb-state {:started true :xtdb (start-xtdb!)})
-        (prn "XTDB-Node started")
-        (:xtdb @xtdb-state))
+      (reset! xtdb-state {:started true :xtdb (start-xtdb!)})
+      (prn "XTDB-Node started")
+      (:xtdb @xtdb-state)
       (catch clojure.lang.ExceptionInfo e
         (log/error (str "Caught " e))))))
 
@@ -57,10 +56,11 @@
   (xt/q (xt/db xtdb-node) '{:find  [e fn ln]
                             :where [[e :user/name fn]
                                     [e :user/last-name ln]]})
-  (xt/q
-   (xt/db xtdb-node)
-   '{:find [pull ?invoice [*]]
-     :where [[?invoice :transaction/sub-admin "123"]]})
+  (time (xt/q
+         (xt/db xtdb-node)
+         '{:find [(pull ?invoice [*])]
+           :where [[?invoice :transaction/sub-admin "123"]
+                   [?invoice :transaction/id #uuid"0edf6eee-acbb-4d89-93ca-8fd800f463ee"]]}))
 
   (count (xt/q
           (xt/db xtdb-node)
@@ -71,5 +71,6 @@
   (let [q '{:find [(pull ?e [:object_type/id :name
                              {:property_types [:name :data_type :unit :visible]}])]
             :where [[?e :name "%s"]
-                    [?e :data_type "enumeration"]]}])
+                    [?e :data_type "enumeration"]]}]
+    (prn q))
   ...)

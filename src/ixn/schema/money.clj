@@ -24,8 +24,8 @@
     (/ (Math/round ^Double (* value factor)) factor)))
 
 (defn money?
-  [val]
   "Check id val is valid Money data."
+  [val]
   (m/validate Money val))
 
 (defn ->money
