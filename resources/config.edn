@@ -1,22 +1,17 @@
 {:system
- {
-  :web/server
-  {:env                            :dev
-   :secure-headers
-   {content-security-policy-settings
-    {:object-src "http://localhost:3300/*"}}
-
+ {:web/server
+  {:secure-headers                 {:content-security-policy-settings {:object-src "http://localhost:3300/*"}}
    :io.pedestal.http/resource-path "/public"
    :io.pedestal.http/type          :jetty
    :io.pedestal.http/join?         false
    :io.pedestal.http/port          3300
-   :io.pedestal.http/host          "localhost"}
+   :io.pedestal.http/host          "localhost"
+   :io.pedestal.http/routes        'routes}
 
   :database {:xtdb/tx-log         "data/dev/tx-log"
              :xtdb/document-store "data/dev/doc-store"
              :xtdb/index-store    "data/dev/index-store"
-             :xtdb/module         #ig/ref 'xtdb.rocksdb/->kv-store
-             :xtdb/db-dir         data
+             :xtdb/module         'xtdb.rocksdb/->kv-store
              :xtdb/sync?          true}
   :logging  {:level     :warn
              :console   false

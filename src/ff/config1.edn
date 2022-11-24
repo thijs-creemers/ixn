@@ -1,2 +1,0 @@
-{:adapter/jetty {:port 8080, :handler #ig/ref :handler/greet}
- :handler/greet {:name "Alice"}}

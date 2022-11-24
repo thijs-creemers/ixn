@@ -1,15 +1,19 @@
 (ns ixn.main
   (:require
-    ;; [integrant.core :as ig]
-   [io.pedestal.http :as http]
-   [io.pedestal.http.content-negotiation :as cn]
-   [io.pedestal.http.route :as route]
-   [io.pedestal.test]
-   [ixn.financial.chart-of-accounts :as coa]
-   [ixn.schema.account :refer [pull-all-accounts]]
-   [jsonista.core :as json]
-   [rum.core :as rum]))
+    [io.pedestal.http :as http]
+    [io.pedestal.http.content-negotiation :as cn]
+    [io.pedestal.http.route :as route]
+    [io.pedestal.test]
+    [ixn.financial.chart-of-accounts :as coa]
+    [ixn.schema.account :refer [pull-all-accounts]]
+    [jsonista.core :as json]
+    [rum.core :as rum]
+    [integrant.core :as ig]))
 
+
+(def config
+  (get-in (ig/read-string (slurp "resources/config.edn"))
+          [:system]))
 (def supported-types ["text/html" "application/edn" "application/json" "text/plain"])
 (def content-negociation-interceptor (cn/negotiate-content supported-types))
 
@@ -32,8 +36,8 @@
                                      "application/json" (->json body)
                                      "application/javascript" body)
                   updated-response (assoc response
-                                          :headers {"Content-Type" accepted}
-                                          :body coerced-body)]
+                                     :headers {"Content-Type" accepted}
+                                     :body coerced-body)]
               (assoc context :response updated-response)))})
 
 (defn html-doc
@@ -69,57 +73,40 @@
      :headers {"Content-Type" "text/html"}}))
 
 (defn htmx [_]
-  {:status 200
-   :body (slurp "resources/public/js/htmx.js.min")
+  {:status  200
+   :body    (slurp "resources/public/js/htmx.js.min")
    :headers {"Content-Type" "application/javascript"}})
 
 (def routes
   (route/expand-routes
-   #{["/api/v1/accounts" :get [coerce-body content-negociation-interceptor get-accounts] :route-name :accounts]
-     ["/accounts-list" :get accounts-list :route-name :accounts-list]
-     ["/accounts-refresh" :get accounts-refresh :route-name :accounts-refresh]
-     ["/htmx.js.min" :get htmx :route-name :htmx]}))
+    #{["/api/v1/accounts" :get [coerce-body content-negociation-interceptor get-accounts] :route-name :accounts]
+      ["/accounts-list" :get accounts-list :route-name :accounts-list]
+      ["/accounts-refresh" :get accounts-refresh :route-name :accounts-refresh]
+      ["/htmx.js.min" :get htmx :route-name :htmx]}))
 
-(def service-map
-  {::http/routes         routes
-   ;; Resources will be served from the resource directory's `public`
-   ;; sub directory.
-   ::http/secure-headers {:content-security-policy-settings {:object-src "http://localhost:3300/*"}}
-   ::http/resource-path  "/public"
-   ::http/type           :jetty
-   ::http/join?          false
-   ::http/port           3300})
+;; Setup
+(defmethod ig/init-key :web/server [_ {:keys [handler] :as opts}]
+  (-> opts
+      (assoc :io.pedestal.http/routes routes)
+      http/default-interceptors
+      http/create-server
+      ;; extra interceptors are added
+      http/start))
 
-(defn start []
-  (http/start (-> service-map
-                  http/default-interceptors
-                  http/create-server)))
+(def http-server (ig/init config [:web/server]))
 
-;; For interactive development
-(defonce server (atom nil))
-
-(defn start-dev []
-  (reset! server (-> service-map
-                     http/default-interceptors
-                     http/create-server
-                     ;; extra interceptors are added
-                     http/start)))
-
-(defn stop-dev []
-  (http/stop @server))
-
-(defn restart []
-  (stop-dev)
-  (start-dev))
+(defmethod ig/halt-key! :web/server [_ http-server]
+  (http/stop http-server))
 
 ;; test helpers
 (defn test-request [verb url]
-  (io.pedestal.test/response-for (::http/service-fn @server) verb url))
+  (io.pedestal.test/response-for (::http/service-fn http-server) verb url))
 
 (comment
   (test-request :get "/api/v1/accounts")
   (test-request :get "/accounts-list")
   (restart)
   (+ 1 1)
-
+  (ig/init config [:web/server])
+  (ig/halt! http-server)
   ())
