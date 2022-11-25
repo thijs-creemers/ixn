@@ -1,9 +1,11 @@
 (ns ixn.core
   (:require
-    [integrant.core :as ig])
+   [integrant.core :as ig]
+   [ixn.db :as db]
+   [ixn.main :as main]
+   [ixn.state :refer [system]]
+   [ixn.db])
   (:gen-class))
-
-(defonce system (atom nil))
 
 (def config
   (get-in (ig/read-string (slurp "resources/config.edn")) [:system]))
@@ -16,7 +18,14 @@
   (->> config
        (ig/prep)
        (ig/init)
-       (reset! system)))
+       (reset! system))
+  (prn "started"))
 
 (defn -main [& _]
   (start-app))
+
+(comment
+  (start-app)
+  (stop-app)
+  @system)
+

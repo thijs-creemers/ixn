@@ -1,28 +1,29 @@
 (ns ixn.db
   (:require
     [clojure.java.io :as io]
-    [clojure.tools.logging :as log]
     [integrant.core :as ig]
     [ixn.utils :refer [uuid]]
-    [xtdb.api :as xt]))
+    [xtdb.api :as xt]
+    [ixn.state :refer [system]]))
 
-(def config
-  (get-in (ig/read-string (slurp "resources/config.edn"))
-          [:system]))
 
-(defmethod ig/init-key :database [_ {:keys [handler] :as opts}]
-  (let [{:xtdb/keys [module sync? tx-log document-store index-store]} opts]
-    (letfn [(kv-store [dir]
-              {:kv-store {:xtdb/module 'xtdb.rocksdb/->kv-store
-                          :db-dir      (io/file dir)
-                          :sync?       sync?}})]
-      (xt/start-node
-        {:xtdb/tx-log         (kv-store tx-log)
-         :xtdb/document-store (kv-store document-store)
-         :xtdb/index-store    (kv-store index-store)}))))
+(defmethod ig/init-key
+  :database
+  [_ {:xtdb/keys [module sync? tx-log document-store index-store]}]
+  ;; TODO: figure out how to read the 'module.
+  (letfn [(kv-store [dir]
+            {:kv-store {:xtdb/module 'xtdb.rocksdb/->kv-store
+                        :db-dir      (io/file dir)
+                        :sync?       sync?}})]
+    (let [res (xt/start-node
+                {:xtdb/tx-log         (kv-store tx-log)
+                 :xtdb/document-store (kv-store document-store)
+                 :xtdb/index-store    (kv-store index-store)})]
+      (prn "Started XTDB server!")
+      (swap! system assoc :database res))))
 
-(def database (ig/init config [:database]))
-(def xtdb-node (:database database))
+
+(def xtdb-node (:database (:database @system)))
 
 (defmethod ig/halt-key! :database [_ xtdb-node]
   (.close xtdb-node))
@@ -31,7 +32,8 @@
   "Get a list of maps and prepare them to be stored in XTDB DB"
   [data]
   (mapv (fn [v]
-          [::xt/put (assoc-in v [:xt/id] (uuid))]) data))   ;:xtdb.tx/put
+          [::xt/put (assoc-in v [:xt/id] (uuid))])
+        data))   ;:xtdb.tx/put
 
 (defn transact!
   "Store a list of maps in XTDB"
@@ -42,6 +44,7 @@
          prepare-list-of-maps)))
 
 (comment
+  ;; Some manual tests to see if database works.
   (xt/submit-tx xtdb-node [[::xt/put {:xt/id          "6"
                                       :user/name      "Nienke"
                                       :user/last-name "Creemers"}]])
@@ -59,10 +62,4 @@
            '{:find  [(pull ?account [*])]
              :where [[?account :account/summary-level 0]
                      [?account :account/type :ast]]}))
-
-  (let [q '{:find  [(pull ?e [:object_type/id :name
-                              {:property_types [:name :data_type :unit :visible]}])]
-            :where [[?e :name "%s"]
-                    [?e :data_type "enumeration"]]}]
-    (prn q))
   ...)

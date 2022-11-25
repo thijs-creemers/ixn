@@ -8,12 +8,10 @@
     [ixn.schema.account :refer [pull-all-accounts]]
     [jsonista.core :as json]
     [rum.core :as rum]
-    [integrant.core :as ig]))
+    [integrant.core :as ig]
+    [ixn.state :refer [system]]))
 
 
-(def config
-  (get-in (ig/read-string (slurp "resources/config.edn"))
-          [:system]))
 (def supported-types ["text/html" "application/edn" "application/json" "text/plain"])
 (def content-negociation-interceptor (cn/negotiate-content supported-types))
 
@@ -86,14 +84,18 @@
 
 ;; Setup
 (defmethod ig/init-key :web/server [_ {:keys [handler] :as opts}]
-  (-> opts
-      (assoc :io.pedestal.http/routes routes)
-      http/default-interceptors
-      http/create-server
-      ;; extra interceptors are added
-      http/start))
+  (let [res (-> opts
+                (assoc :io.pedestal.http/routes routes)
+                http/default-interceptors
+                http/create-server
+                ;; extra interceptors are added
+                http/start)]
+    (prn "started HTTP Server")
+    (swap! system assoc-in [:http-server] res)
+    res))
 
-(def http-server (ig/init config [:web/server]))
+(def http-server
+  {:web/server (get-in @system [:web/server])})
 
 (defmethod ig/halt-key! :web/server [_ http-server]
   (http/stop http-server))
