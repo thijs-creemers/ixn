@@ -47,6 +47,7 @@
     <orderEntry type="library" name="Deps: com.googlecode.json-simple/json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Deps: org.iq80.snappy/snappy:0.4" level="project" />
     <orderEntry type="library" name="Deps: pro.juxt.clojars-mirrors.com.taoensso/nippy:3.1.1-2" level="project" />
+    <orderEntry type="library" name="Deps: ch.qos.logback/logback-core:1.4.5" level="project" />
     <orderEntry type="library" name="Deps: slingshot:0.12.2" level="project" />
     <orderEntry type="library" name="Deps: org.apache.httpcomponents/httpcore-nio:4.4.10" level="project" />
     <orderEntry type="library" name="Deps: org.eclipse.jetty.websocket/websocket-api:9.4.44.v20210927" level="project" />
@@ -113,6 +114,7 @@
     <orderEntry type="library" name="Deps: org.eclipse.jetty.websocket/websocket-common:9.4.44.v20210927" level="project" />
     <orderEntry type="library" name="Deps: metosin/jsonista:0.3.6" level="project" />
     <orderEntry type="library" name="Deps: io.pedestal/pedestal.route:0.5.10" level="project" />
+    <orderEntry type="library" name="Deps: ch.qos.logback/logback-classic:1.4.5" level="project" />
     <orderEntry type="library" name="Deps: org.clojure/core.memoize:0.5.9" level="project" />
     <orderEntry type="library" name="Deps: org.clojure/data.priority-map:0.0.7" level="project" />
     <orderEntry type="library" name="Deps: ring/ring-mock:0.4.0" level="project" />
