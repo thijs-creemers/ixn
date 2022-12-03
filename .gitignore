@@ -4,3 +4,5 @@
 .clj-kondo
 .lsp
 .nrepl-port
+data/*
+logs/*
