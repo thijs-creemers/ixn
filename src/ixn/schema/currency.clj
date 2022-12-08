@@ -34,11 +34,13 @@
 (defn- fetch-rates
   []
   (when (< (compare (:date @rates-cache) (date-yesterday)) 0)
-     (let [{:keys [reason status :body]} (client/get "https://www.currency-api.com/rates")]
-       (if (= reason "OK")
-         (reset! rates-cache (-> body (json/read-value json/keyword-keys-object-mapper)))
-         {:error {:status status :reason reason}})))
-  (:rates @rates-cache))
+    (let [{:keys [status body]} (client/get "https://api.exchangerate.host/latest")]
+      (if (= status 200)
+        (reset! rates-cache (-> body
+                                  (json/read-value json/keyword-keys-object-mapper)
+                                  :rates))
+        {:error {:status status}})))
+  @rates-cache)
 
 
 (defn rate
@@ -55,3 +57,10 @@
 ;        euros (convert-to-euro currency amount)]
 ;    (prn euros)
 ;    (/ (bigdec euros) rate)))
+
+(comment
+  currencies
+  (fetch-rates)
+  rates-cache
+
+  ...)
