@@ -46,7 +46,7 @@
     (bigdec (/ value (Math/pow 10 decimals)))))
 
 (defn <-money-value
-  "Return integer value as registered in money data"
+  "Return internal integer value as registered in money data"
   [money-value]
   (:money/value money-value))
 
@@ -76,16 +76,28 @@
 (defn add
   "Add"
   [& args]
-  (->money-from-value (apply + (map (fn [x] (:money/value x)) args))))
+  (if (apply = (map :money/currency args))
+    (->money-from-value (apply + (map (fn [x] (:money/value x)) args)))
+    (throw (Exception. "Currencies must match"))))
 
 (defn subtract
   "Subtract"
   [& args]
-  (->money-from-value (apply - (map (fn [x] (:money/value x)) args))))
+  (if (apply = (map :money/currency args))
+    (->money-from-value (apply - (map (fn [x] (:money/value x)) args)))
+    (throw (Exception. "Currencies must match."))))
 
 (comment
   ;; some REPL tests
   (money?
-   (add (->money 12.3456) (->money 11.33383838)))
+   (add (->money 12.3456) (->money 11.33383838) (->money 1234.21)))
+  (let [money-val (->money 11.33383838)]
+    (money? money-val))
+
   (money? (subtract (->money 12.3456) (->money 11.33383838)))
-  (->money 12.34))
+  (mformat (->money 123.45))
+  (mformat (->money-from-value :USD 12345))
+  (<-money-value (->money 126.87))
+  (map :money/currency  [(->money 126.87) (->money 126.87) (->money 126.87) (->money 126.87)])
+
+  ...)

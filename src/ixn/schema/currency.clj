@@ -61,6 +61,6 @@
 (comment
   currencies
   (fetch-rates)
-  rates-cache
+  @rates-cache
 
   ...)

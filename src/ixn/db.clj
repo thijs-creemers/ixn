@@ -56,9 +56,10 @@
            :where [[?invoice :transaction/sub-admin "123"]
                    [?invoice :transaction/id #uuid"0edf6eee-acbb-4d89-93ca-8fd800f463ee"]]}))
 
+  ;; :ast :lia :cst :prf
   (count (xt/q
           (xt/db xtdb-node)
           '{:find  [(pull ?account [*])]
-            :where [[?account :account/summary-level 0]
+            :where [[?account :account/summary-level 2]
                     [?account :account/type :ast]]}))
   ...)

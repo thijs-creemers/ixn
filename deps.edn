@@ -3,14 +3,14 @@
  :deps     {org.clojure/clojure            {:mvn/version "1.11.1"}
 
             ;; xtdb db
-            com.xtdb/xtdb-core             {:mvn/version "1.22.1"}
-            com.xtdb/xtdb-rocksdb          {:mvn/version "1.22.1"}
+            com.xtdb/xtdb-core             {:mvn/version "1.23.0"}
+            com.xtdb/xtdb-rocksdb          {:mvn/version "1.23.0"}
 
             ;; Full text
             ;juxt/crux-lucene               {:mvn/version "21.06-1.17.1-alpha"}
 
             ;; schemas
-            metosin/malli                  {:mvn/version "0.9.2"}
+            metosin/malli                  {:mvn/version "0.10.0"}
             com.gfredericks/test.chuck     {:mvn/version "0.2.13"} ;; needed for malli generator regex.
 
             ;; API
@@ -25,7 +25,7 @@
 
             ;; Libs
             clj-http/clj-http              {:mvn/version "3.12.3"}
-            metosin/jsonista               {:mvn/version "0.3.6"}
+            metosin/jsonista               {:mvn/version "0.3.7"}
             metosin/muuntaja               {:mvn/version "0.6.8"}
             rum/rum                        {:mvn/version "0.12.10"}
             clj-time/clj-time              {:mvn/version "0.15.2"}
@@ -34,10 +34,10 @@
             org.clojure/tools.logging      {:mvn/version "1.2.4"}
             ch.qos.logback/logback-classic {:mvn/version "1.4.5"}
             ch.qos.logback/logback-core    {:mvn/version "1.4.5"}
-            org.slf4j/slf4j-api            {:mvn/version "2.0.4"}}
+            org.slf4j/slf4j-api            {:mvn/version "2.0.6"}}
 
  ;; global aliases are defined in .clojure/.deps.edn
- :aliases  {:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.1.4"}}
+ :aliases  {:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.2.0"}}
                       :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}}}
 ;; :test       - run tests with koacha.runner.
 ;; :outdated   - find packages that are outdated $ clj -M:outdated}}
