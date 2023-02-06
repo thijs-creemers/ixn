@@ -46,7 +46,7 @@
     (bigdec (/ value (Math/pow 10 decimals)))))
 
 (defn <-money-value
-  "Return internal integer value as registered in money data"
+  "Return the internal integer value as registered in money data."
   [money-value]
   (:money/value money-value))
 
@@ -99,5 +99,8 @@
   (mformat (->money-from-value :USD 12345))
   (<-money-value (->money 126.87))
   (map :money/currency  [(->money 126.87) (->money 126.87) (->money 126.87) (->money 126.87)])
+  (def mv (->money 1234.56))
+  ;; Get the english title
+  (:nl (m/properties Money))
 
   ...)
