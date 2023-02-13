@@ -166,7 +166,6 @@
     <orderEntry type="library" name="Deps: org.clojure/core.memoize:0.5.9" level="project" />
     <orderEntry type="library" name="Deps: org.apache.maven/maven-repository-metadata:3.8.3" level="project" />
     <orderEntry type="library" name="Deps: org.clojure/data.priority-map:0.0.7" level="project" />
-    <orderEntry type="library" name="Deps: ring/ring-mock:0.4.0" level="project" />
     <orderEntry type="library" name="Deps: org.eclipse.jetty/jetty-server:9.4.44.v20210927" level="project" />
     <orderEntry type="library" name="Deps: org.apache.httpcomponents/httpmime:4.5.13" level="project" />
     <orderEntry type="library" name="Deps: aopalliance:1.0" level="project" />

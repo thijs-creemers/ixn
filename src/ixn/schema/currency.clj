@@ -62,5 +62,8 @@
   currencies
   (fetch-rates)
   @rates-cache
+  (rate :USD)
+  (rate :GBP)
+  rates-cache
 
   ...)
