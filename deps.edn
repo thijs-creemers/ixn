@@ -10,8 +10,8 @@
             ;juxt/crux-lucene               {:mvn/version "21.06-1.17.1-alpha"}
 
             ;; schemas
-            metosin/malli                  {:mvn/version "0.10.0"}
-            com.gfredericks/test.chuck     {:mvn/version "0.2.13"} ;; needed for malli generator regex.
+            metosin/malli                  {:mvn/version "0.10.1"}
+            com.gfredericks/test.chuck     {:mvn/version "0.2.14"} ;; needed for malli generator regex.
 
             ;; API
             io.pedestal/pedestal.service   {:mvn/version "0.5.10"}
@@ -30,6 +30,13 @@
             rum/rum                        {:mvn/version "0.12.10"}
             clj-time/clj-time              {:mvn/version "0.15.2"}
 
+            ;; auth
+            ;one-time/one-time              {:mvn/version "0.8.0"}
+            clj-otp/clj-otp                {:mvn/version "0.1.3"}
+            buddy/buddy-core               {:mvn/version "1.10.413"}
+            buddy/buddy-hashers            {:mvn/version "1.8.158"}
+            buddy/buddy-sign               {:mvn/version "3.4.333"}
+
             ;; logging:
             org.clojure/tools.logging      {:mvn/version "1.2.4"}
             ch.qos.logback/logback-classic {:mvn/version "1.4.5"}
@@ -38,10 +45,13 @@
 
  ;; global aliases are defined in .clojure/.deps.edn
  :aliases  {:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.2.0"}}
-                      :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}}}
+                      :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}
+            :lint    {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2023.02.17"}}
+                      :main-opts  ["-m" "clj-kondo.main" "--lint" "src"]}}}
+
 ;; :test       - run tests with koacha.runner.
 ;; :outdated   - find packages that are outdated $ clj -M:outdated}}
-;; :clj-kondo  - run code check: $ clj -M:clj-kondo
+; :clj-kondo  - run code check: $ clj -M:clj-kondo
 ;; :nrepl      - start an nREPL server on a random available port:
 ;; :liquid     - see https://github.com/mogenslund/liquid
 ;; :uberjar    - create app as uberjar

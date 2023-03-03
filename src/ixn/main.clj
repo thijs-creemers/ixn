@@ -4,12 +4,10 @@
    [io.pedestal.http.content-negotiation :as cn]
    [io.pedestal.http.route :as route]
    [io.pedestal.test]
-   [ixn.financial.chart-of-accounts :as coa]
-   [ixn.schema.account :refer [pull-all-accounts]]
    [jsonista.core :as json]
-   [rum.core :as rum]
    [integrant.core :as ig]
    [ixn.state :refer [system]]
+   [ixn.financial.frontend.accounts :refer [get-accounts accounts-refresh accounts-list]]
    [clojure.tools.logging :as log]))
 
 (def supported-types ["text/html" "application/edn" "application/json" "text/plain"])
@@ -38,37 +36,6 @@
                                           :body coerced-body)]
               (assoc context :response updated-response)))})
 
-(defn html-doc
-  "Return the basic HTML doc."
-  [title body-content]
-  [:html
-   [:head
-    [:title title]
-    [:meta {:name "viewport" :content "width=device-width, initial-scale=1" :charset "utf-8"}]
-    [:link {:rel "stylesheet" :href "https://unpkg.com/tachyons/css/tachyons.min.css"}]
-    [:script {:src "/htmx.js.min" :defer "true" :type "application/javascript"}]]
-   [:body.bg-gray-30.black-70.pa4.avenir
-    [:div.fl.w-100
-     ;[:div.fl.w-20 "FF"]
-     [:div.fl.w-80 body-content]]]])
-
-(defn get-accounts
-  [_]
-  (let [all-accounts (pull-all-accounts {:sort-on :account/id :order :asc})]
-    {:status 200
-     :body   all-accounts}))
-
-(defn accounts-refresh [_]
-  (let [body (rum/render-html (coa/overview))]
-    {:status  200
-     :body    body
-     :headers {"Content-Type" "text/html"}}))
-
-(defn accounts-list [_]
-  (let [body (rum/render-html (html-doc "Accounts list" (coa/overview)))]
-    {:status  200
-     :body    body
-     :headers {"Content-Type" "text/html"}}))
 
 (defn htmx [_]
   {:status  200

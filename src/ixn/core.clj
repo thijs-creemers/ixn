@@ -1,10 +1,10 @@
 (ns ixn.core
   (:require
    [integrant.core :as ig]
-   [ixn.db :as db]
+   ;[ixn.db :as db]
    [ixn.main :as main]
-   [ixn.state :refer [system]]
    [ixn.db]
+   [ixn.state :refer [system]]
    [clojure.tools.logging :as log])
   (:gen-class))
 

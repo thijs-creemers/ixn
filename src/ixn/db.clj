@@ -11,6 +11,7 @@
   :database
   [_ {:xtdb/keys [module sync? tx-log document-store index-store]}]
   ;; TODO: figure out how to read the 'module.
+  (prn module)
   (letfn [(kv-store [dir]
             {:kv-store {:xtdb/module 'xtdb.rocksdb/->kv-store
                         :db-dir      (io/file dir)
@@ -45,7 +46,6 @@
 (comment
   ;; Some manual tests to see if database works.
   (xt/submit-tx xtdb-node [[::xt/put {:xt/id          "6"
-                                      :user/name      "Nienke"
                                       :user/last-name "Creemers"}]])
   (xt/q (xt/db xtdb-node) '{:find  [e fn ln]
                             :where [[e :user/name fn]
