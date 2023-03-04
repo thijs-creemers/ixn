@@ -1,4 +1,4 @@
-(ns ixn.financial.frontend.accounts
+(ns ixn.financial.views.accounts
   (:require
     [ixn.frontend.core :refer [html-doc]]
     [ixn.schema.account :refer [pull-all-accounts]]
@@ -83,3 +83,6 @@
     {:status  200
      :body    body
      :headers {"Content-Type" "text/html"}}))
+
+(comment
+  (accounts-list 1))
