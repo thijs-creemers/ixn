@@ -1,11 +1,10 @@
 (ns ixn.core
   (:require
    [integrant.core :as ig]
-   ;[ixn.db :as db]
-   [ixn.main :as main]
-   [ixn.db]
-   [ixn.state :refer [system]]
-   [clojure.tools.logging :as log])
+   [ixn.db :refer [num-of-accounts]]
+   [clojure.tools.logging :as log]
+   [ixn.main]
+   [ixn.state :refer [system]])
   (:gen-class))
 
 (def config
@@ -29,8 +28,10 @@
 (defn -main [& _]
   (start-app))
 
+
 (comment
   (start-app)
   (stop-app)
+  (num-of-accounts)
   @system
   ...)

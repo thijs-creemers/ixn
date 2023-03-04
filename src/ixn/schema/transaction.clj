@@ -1,6 +1,6 @@
 (ns ixn.schema.transaction
   (:require
-   [ixn.db :refer [xtdb-node]]
+   [ixn.state :refer [system]]
    [ixn.schema.account :refer [AccountNumber]]
    [ixn.schema.core :refer [NotEmptyString]]
    [ixn.schema.journal :refer [JournalType]]
@@ -60,14 +60,14 @@
 
 (defn pull-transactions []
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find  [(pull ?trn [*])]
      :where [[?trn :transaction/id _]]}))
 
 
 (defn pull-transaction-by-id [id]
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find  [(pull ?trn [{:transaction/account [:account/id :transaction/account :account/name]}
                          :transaction/amount
                          :transaction/side
@@ -82,7 +82,7 @@
 
 (defn fetch-transactions []
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find     [?id ?dt ?ln ?dsc ?anr ?cce ?sad ?amt ?sid]
      :where
      [[?trn :transaction/id ?id]
@@ -100,7 +100,7 @@
 (defn fetch-transaction-by-id
   [id]
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find     [?id ?dt ?ln ?dsc ?anr ?cce ?sad ?amt ?sid]
      :in       [?id]
      :where    [[?trn :transaction/id ?id]

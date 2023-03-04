@@ -2,7 +2,8 @@
   (:require [clojure.tools.logging :as log]
             [clojure.tools.reader.edn :as edn]
             [xtdb.api :as xtdb]
-            [ixn.db :refer [xtdb-node transact!]]
+            [ixn.state :refer [system]]
+            [ixn.db :refer [transact!]]
             [ixn.schema.core :refer [NotEmptyString]]
             [malli.core :as m]))
 
@@ -70,7 +71,7 @@
 
 (defn fetch-accounts []
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find     [?act ?id ?nm ?tp ?lvl]
      :where    [[?act :account/id ?id]
                 [?act :account/name ?nm]
@@ -84,7 +85,7 @@
 
 (defn fetch-accounts-by-summary-level [lvl]
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find     [?act ?id ?nm ?tp ?lvl]
      :where    [[?act :account/id ?id]
                 [?act :account/name ?nm]
@@ -101,7 +102,7 @@
   "Fetch an account by id"
   [id]
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find     [?act ?id ?nm ?tp ?lvl]
      :where    [[?act :account/id ?id]
                 [?act :account/name ?nm]
@@ -118,10 +119,10 @@
 
 (defn pull-account-by-id
   [id]
-  (xtdb/pull (xtdb/db xtdb-node) [:account/id :account/name :account/type :account/summary-level] id)
+  (xtdb/pull (xtdb/db (:database (:database @system))) [:account/id :account/name :account/type :account/summary-level] id)
   (ffirst
    (xtdb/q
-    (xtdb/db xtdb-node)
+    (xtdb/db (:database (:database @system)))
     '{:find [(pull ?act [*])]
       :in [?id]
       :where [[?act :account/id ?id]]}
@@ -138,7 +139,7 @@
   (let [my-limit (if (and limit (> limit 0)) limit 10)
         my-offset (if offset offset 0)
         data (->> (xtdb/q
-                    (xtdb/db xtdb-node)
+                    (xtdb/db (:database (:database @system)))
                     '{:find [(pull ?account [*])]
                       :where [[?account :account/summary-level 0]]})
                   (map first)
@@ -155,7 +156,7 @@
   "Fetch an account by account-type"
   [tp]
   (xtdb/q
-   (xtdb/db xtdb-node)
+   (xtdb/db (:database (:database @system)))
    '{:find     [?act ?id ?nm ?tp ?lvl]
      :where    [[?act :account/id ?id]
                 [?act :account/name ?nm]

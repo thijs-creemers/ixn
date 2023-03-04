@@ -13,8 +13,9 @@
              :xtdb/index-store    "data/dev/index-store"
              :xtdb/module         'xtdb.rocksdb/->kv-store
              :xtdb/sync?          true}
-  :logging  {:level     :warn
-             :console   false
+
+  :logging  {:level     :debug
+             :console   true
              :appenders [{:appender       :rolling-file
                           :file           "logs/web-service.log"
                           :rolling-policy {:type        :time-based
