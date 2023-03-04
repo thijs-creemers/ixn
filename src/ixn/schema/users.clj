@@ -121,7 +121,7 @@
   (let [secret     (get-secret (:username user))
         totp-value (if (= (:type user) :hotp)
                      (hotp secret (:counter user))
-                     (totp secret (:interval user)))
+                     (totp secret))
         actual     (Integer/parseInt token)]
     (when (not (= totp-value actual))
       (throw (Exception. "Invalid 2FA token.")))))
