@@ -33,18 +33,19 @@
             ;; auth
             ;one-time/one-time              {:mvn/version "0.8.0"}
             clj-otp/clj-otp                {:mvn/version "0.1.3"}
-            buddy/buddy-hashers            {:mvn/version "1.8.158"}}}
+            buddy/buddy-hashers            {:mvn/version "1.8.158"}
+
             ;; logging:
             org.clojure/tools.logging      {:mvn/version "1.2.4"}
             ch.qos.logback/logback-classic {:mvn/version "1.4.5"}
             ch.qos.logback/logback-core    {:mvn/version "1.4.5"}
-            org.slf4j/slf4j-api            {:mvn/version "2.0.6"}
+            org.slf4j/slf4j-api            {:mvn/version "2.0.6"}}
 
  ;; global aliases are defined in .clojure/.deps.edn
  :aliases  {:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.2.0"}}
                       :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}
             :lint    {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2023.02.17"}}
-                      :main-opts  ["-m" "clj-kondo.main" "--lint" "src"]}}
+                      :main-opts  ["-m" "clj-kondo.main" "--lint" "src"]}}}
 
 ;; :test       - run tests with koacha.runner.
 ;; :outdated   - find packages that are outdated $ clj -M:outdated}}
