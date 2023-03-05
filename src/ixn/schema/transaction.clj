@@ -6,7 +6,7 @@
    [ixn.schema.journal :refer [JournalType]]
    [ixn.schema.money :refer [->money Money]]
    [ixn.financial.utils :refer [balance line-totals]]
-   [ixn.financial.payable.transaction :refer [book-purchase-invoice]]
+   ;[ixn.financial.payable.transaction :refer [book-purchase-invoice]]
    ;[ixn.financial.receivable.transaction :refer [book-sales-invoice]]
    [ixn.utils :refer [now uuid]]
    [malli.core :as m]
@@ -121,7 +121,7 @@
   (count (pull-transactions))
   (count (fetch-transactions))
   (fetch-transaction-by-id #uuid"73786575-9e90-4ce0-a18b-c64326c64a5a")
-  (balance (book-purchase-invoice (mg/generate PurchaseBooking)))
+  ;(balance (book-purchase-invoice (mg/generate PurchaseBooking)))
 
   (m/explain Transaction
              (let [id (uuid)

@@ -42,10 +42,19 @@
             org.slf4j/slf4j-api            {:mvn/version "2.0.6"}}
 
  ;; global aliases are defined in .clojure/.deps.edn
- :aliases  {:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.2.0"}}
-                      :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/cruxy-0.1.0.jar"]}
-            :lint    {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2023.02.17"}}
-                      :main-opts  ["-m" "clj-kondo.main" "--lint" "src"]}}}
+ :aliases  {
+            :run-m   {:main-opts ["-m" "ixn.core"]}
+            :run-x   {:ns-default ixn.core
+                      :exec-fn    -main
+                      :exec-args  {:name "Clojure"}}
+            :build   {:deps       {io.github.clojure/tools.build {:git/tag "v0.9.3" :git/sha "e537cd1"}}
+                      :ns-default build}
+            ;:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.2.0"}}
+            ;          :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/ixn-0.1.0.jar"]}
+            :test    {:extra-paths ["test"]
+                      :extra-deps  {org.clojure/test.check {:mvn/version "1.1.1"}
+                                    io.github.cognitect-labs/test-runner
+                                    {:git/tag "v0.5.1" :git/sha "dfb30dd"}}}}}
 
 ;; :test       - run tests with koacha.runner.
 ;; :outdated   - find packages that are outdated $ clj -M:outdated}}
