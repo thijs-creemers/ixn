@@ -16,7 +16,7 @@ Create a docker
 docker-compose up
 
 
-Manual start in rel
+Manual start in REPL
 -------------------
 load repl with deps.edn
 
