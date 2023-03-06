@@ -6,5 +6,7 @@
           :account-vat-low  "27040"
           :vat-low          9})
 
+(defonce date-format "dd-MM-yyyy")
+(defonce fetch-limit 20)
 
-(def current-book-period {:year 2022 :period 4})
+(def current-book-period {:year 2023 :period 3})

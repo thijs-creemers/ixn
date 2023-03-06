@@ -5,7 +5,7 @@
     [clj-otp.core :refer [hotp secret-key totp]]
     [clojure.string :as str]
     [clojure.tools.logging :as log]
-    [ixn.state :refer [system]]
+    [ixn.state :refer [xtdb-node]]
     [ixn.db :refer [transact!]]
     [ixn.schema.core :refer [NotEmptyString]]
     [ixn.utils :refer [uuid]]
@@ -40,7 +40,7 @@
   "Fetch a user record by his/her user name."
   [name]
   (ffirst (xtdb/q
-            (xtdb/db (:database (:database @system)))
+            (xtdb/db (xtdb-node))
             '{:find  [(pull ?user [*])]
               :in    [?name]
               :where [[?user :user/user-name ?name]]}
@@ -50,14 +50,14 @@
   "Fetch a user record by his/her e-mail address."
   [e-mail]
   (ffirst (xtdb/q
-            (xtdb/db (:database (:database @system)))
+            (xtdb/db (xtdb-node))
             '{:find  [(pull ?user [*])]
               :in    [?e-mail]
               :where [[?user :user/e-mail ?e-mail]]}
             e-mail)))
 
 (defn all-users []
-  (xtdb/q (xtdb/db (:database (:database @system)))
+  (xtdb/q (xtdb/db (xtdb-node))
           '{:find  [?act ?name ?e-mail]
             :where [[?act :user/user-name ?name]
                     [?act :user/e-mail ?e-mail]]}))

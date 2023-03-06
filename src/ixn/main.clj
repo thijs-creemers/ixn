@@ -6,18 +6,21 @@
     [io.pedestal.http :as http]
     [io.pedestal.http.route :as route]
     [io.pedestal.test]
-    [ixn.financial.views.accounts :refer [accounts-list accounts-refresh]]
+    [ixn.financial.views.accounts :as accounts]
     [ixn.financial.views.accounts-api :as accounts-api]
+    [ixn.financial.views.accounts-payable :as accounts-payable]
+    [ixn.financial.views.accounts-payable-api :as accounts-payable-api]
     [ixn.frontend.core :refer [htmx]]
     [ixn.state :refer [system]]))
 
 
 (def routes
   (route/expand-routes
-    (union #{["/accounts-list" :get accounts-list :route-name :accounts-list]
-             ["/accounts-refresh" :get accounts-refresh :route-name :accounts-refresh]
-             ["/htmx.js.min" :get htmx :route-name :htmx]}
-           accounts-api/routes)))
+    (union #{["/htmx.js.min" :get htmx :route-name :htmx]}
+           accounts/routes
+           accounts-api/routes
+           accounts-payable/routes
+           accounts-payable-api/routes)))
 
 (defmethod ig/init-key :web/server [_ {:keys [handler] :as opts}]
   (let [res (-> opts
@@ -43,5 +46,6 @@
 (comment
   (htmx 1)
   (accounts-list 1)
+  (http/start (get-in @system [:web/server]))
 
   ())

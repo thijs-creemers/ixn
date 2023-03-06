@@ -62,7 +62,7 @@
           [:div
            [:h1.f1 "Accounts overview"]
            [:div.dt
-            (form)
+            ;(form)
             (account-caption)
             (account-table)]])
 
@@ -83,6 +83,10 @@
     {:status  200
      :body    body
      :headers {"Content-Type" "text/html"}}))
+
+(def routes
+  #{["/accounts-list" :get accounts-list :route-name :accounts-list]
+    ["/accounts-refresh" :get accounts-refresh :route-name :accounts-refresh]})
 
 (comment
   (accounts-list 1))

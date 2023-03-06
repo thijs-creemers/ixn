@@ -6,8 +6,8 @@
 
 (defn get-accounts
   [request]
-  (let [limit        (parse-integer (:limit (:path-params request)) 10)
-        offset       (parse-integer (:offset (:path-params request)) 10)
+  (let [limit        (parse-integer (:limit (:path-params request)) 20)
+        offset       (parse-integer (:offset (:path-params request)) 0)
         all-accounts (pull-all-accounts {:sort-on :account/id :order :asc :limit limit :offset offset})]
     {:status 200
      :body   all-accounts}))
@@ -29,4 +29,5 @@
 
 ;; Some curl test examples
 ;; "curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:3300/api/v1/accounts/10/0"
+;; "curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:3300/api/v1/account/00011"
 ;; "curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:3300/api/v1/account/00011"

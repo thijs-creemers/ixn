@@ -1,13 +1,11 @@
 (ns ixn.schema.transaction
   (:require
-   [ixn.state :refer [system]]
    [ixn.schema.account :refer [AccountNumber]]
    [ixn.schema.core :refer [NotEmptyString]]
    [ixn.schema.journal :refer [JournalType]]
    [ixn.schema.money :refer [->money Money]]
    [ixn.financial.utils :refer [balance line-totals]]
-   ;[ixn.financial.payable.transaction :refer [book-purchase-invoice]]
-   ;[ixn.financial.receivable.transaction :refer [book-sales-invoice]]
+   [ixn.state :refer [xtdb-node]]
    [ixn.utils :refer [now uuid]]
    [malli.core :as m]
    [malli.generator :as mg]
@@ -28,7 +26,8 @@
    [:transaction/amount Money]
    [:transaction/sub-admin string?]
    [:transaction/cost-center string?]
-   [:transaction/side [:enum {} :debit :credit]]])
+   [:transaction/side [:enum {} :debit :credit]]
+   [:transaction/invoice string?]])
 
 (def Transaction
   [:and
@@ -38,6 +37,7 @@
   [:map
    [:invoice-date inst?]
    [:description string?]
+   [:invoice string?]
    [:debtor-id string?]
    [:amount-high number?]
    [:amount-low number?]
@@ -49,6 +49,7 @@
   [:map
    [:invoice-date inst?]
    [:description string?]
+   [:invoice string?]
    [:creditor-id string?]
    [:amount-high number?]
    [:amount-low number?]
@@ -60,14 +61,14 @@
 
 (defn pull-transactions []
   (xtdb/q
-   (xtdb/db (:database (:database @system)))
+   (xtdb/db (xtdb-node))
    '{:find  [(pull ?trn [*])]
      :where [[?trn :transaction/id _]]}))
 
 
 (defn pull-transaction-by-id [id]
   (xtdb/q
-   (xtdb/db (:database (:database @system)))
+   (xtdb/db (xtdb-node))
    '{:find  [(pull ?trn [{:transaction/account [:account/id :transaction/account :account/name]}
                          :transaction/amount
                          :transaction/side
@@ -82,7 +83,7 @@
 
 (defn fetch-transactions []
   (xtdb/q
-   (xtdb/db (:database (:database @system)))
+   (xtdb/db (xtdb-node))
    '{:find     [?id ?dt ?ln ?dsc ?anr ?cce ?sad ?amt ?sid]
      :where
      [[?trn :transaction/id ?id]
@@ -100,7 +101,7 @@
 (defn fetch-transaction-by-id
   [id]
   (xtdb/q
-   (xtdb/db (:database (:database @system)))
+   (xtdb/db (xtdb-node))
    '{:find     [?id ?dt ?ln ?dsc ?anr ?cce ?sad ?amt ?sid]
      :in       [?id]
      :where    [[?trn :transaction/id ?id]

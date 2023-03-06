@@ -1,6 +1,9 @@
 IXN
 ===
 
+IXN is a project to play around with clojure, clojure.tools.deps and xtdb.
+
+
 Build
 -----
 
@@ -11,10 +14,9 @@ Run
 
 java -jar target/ixn-0.1.1.jar
 
-Create a docker
+Create and run a docker with docker-compos
 ---------------
-docker-compose up
-
+docker-compose up [-d]
 
 Manual start in REPL
 -------------------

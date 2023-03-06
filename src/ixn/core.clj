@@ -34,5 +34,6 @@
   (start-app)
   (stop-app)
   (num-of-accounts)
+  (log/info "Configured logging setup")
   @system
   ...)

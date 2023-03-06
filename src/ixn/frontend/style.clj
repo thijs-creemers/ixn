@@ -8,3 +8,5 @@
 (def data-row
   "dtc fl")
 
+(def data-row-tr
+  (str data-row " tr"))
