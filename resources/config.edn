@@ -1,6 +1,6 @@
 {:system
  {:web/server
-  {:secure-headers                 {:content-security-policy-settings {:object-src "http://localhost:3300/*"}}
+  {;;:secure-headers                 {:content-security-policy-settings {:object-src "http://localhost:3300/*"}}
    :io.pedestal.http/resource-path "/public"
    :io.pedestal.http/type          :jetty
    :io.pedestal.http/join?         false

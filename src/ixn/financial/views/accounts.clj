@@ -76,13 +76,12 @@
   (let [body (rum/render-html (overview))]
     {:status  200
      :body    body
-     :headers {"Content-Type" "text/html"}}))
-
+     :headers {"Content-Type" "text/html" "Content-Security-Policy" ""}}))
 (defn accounts-list [_]
   (let [body (rum/render-html (html-doc "Accounts list" (overview)))]
     {:status  200
      :body    body
-     :headers {"Content-Type" "text/html"}}))
+     :headers {"Content-Type" "text/html" "Content-Security-Policy" "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' unpkg.com 'unsafe-inline';"}})) ;; TODO: figure out how to set this policy.
 
 (def routes
   #{["/accounts-list" :get accounts-list :route-name :accounts-list]

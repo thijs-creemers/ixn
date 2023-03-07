@@ -123,7 +123,7 @@
   (let [body (rum/render-html (html-doc "Purchase invoice list" (overview)))]
     {:status  200
      :body    body
-     :headers {"Content-Type" "text/html"}}))
+     :headers {"Content-Type" "text/html" "Content-Security-Policy" ""}}))
 
 
 (def routes
