@@ -6,6 +6,7 @@
     [io.pedestal.http :as http]
     [io.pedestal.http.route :as route]
     [io.pedestal.test]
+    [ixn.authentication.views :as auth-views]
     [ixn.financial.views.accounts :as accounts]
     [ixn.financial.views.accounts-api :as accounts-api]
     [ixn.financial.views.accounts-payable :as accounts-payable]
@@ -17,6 +18,7 @@
 (def routes
   (route/expand-routes
     (union #{["/htmx.js.min" :get htmx :route-name :htmx]}
+           auth-views/routes
            accounts/routes
            accounts-api/routes
            accounts-payable/routes
@@ -45,7 +47,6 @@
 
 (comment
   (htmx 1)
-  (accounts-list 1)
   (http/start (get-in @system [:web/server]))
 
   ())

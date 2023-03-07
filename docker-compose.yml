@@ -4,7 +4,7 @@ services:
   app:
     image: clojure:latest
     command: >
-      bash -c "cd /app && java -jar /app/target/ixn-0.1.1.jar"
+      bash -c "cd /app && java -jar target/ixn-0.1.1.jar"
     ports:
       - "3300:3300"
     volumes:
