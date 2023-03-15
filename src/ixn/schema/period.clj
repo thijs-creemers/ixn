@@ -35,4 +35,6 @@
                        :book-year/start-date (tc/first-day-of-the-month year 1)
                        :book-year/end-date (tc/last-day-of-the-month year 12)})))
 
-
+(comment
+  (create-book-year 2023)
+  ())

@@ -1,10 +1,11 @@
 (ns ixn.financial.views.accounts-payable
   (:require
     [ixn.financial.payable.transaction :refer [pull-all-purchase-invoices]]
-    [ixn.frontend.core :refer [html-doc]]
+    [ixn.frontend.core :refer [html-doc form-field]]
     [ixn.frontend.style :refer [caption-row data-row table-row]]
     [ixn.schema.money :refer [mformat]]
     [ixn.utils :refer [format-date]]
+    [ixn.settings :refer [content-security-policy]]
     [rum.core :as rum]))
 
 "
@@ -22,12 +23,6 @@
 :transaction/side
 :transaction/invoice
 "
-
-(rum/defc form-field [name helper-text optional]
-  [:div.measure
-   [:label.f6.b.db.mb2 {:for name} name (when optional [:span.normal.black-60 "(optional)"])]
-   [:input.input-reset.ba.b--black-20.pa2.mb2.db.w-100 {:id name :type "text" :aria-describedby (str name "-desc")}]
-   [:small.f6.black-60.db.mb2 {:id (str name "-desc")} helper-text]])
 
 (rum/defc form []
   [:div
@@ -117,13 +112,13 @@
   (let [body (rum/render-html (overview))]
     {:status  200
      :body    body
-     :headers {"Content-Type" "text/html"}}))
+     :headers {"Content-Type" "text/html" "Content-Security-Policy" content-security-policy}}))
 
 (defn purchase-invoice-list [_]
   (let [body (rum/render-html (html-doc "Purchase invoice list" (overview)))]
     {:status  200
      :body    body
-     :headers {"Content-Type" "text/html" "Content-Security-Policy" ""}}))
+     :headers {"Content-Type" "text/html" "Content-Security-Policy" content-security-policy}}))
 
 
 (def routes

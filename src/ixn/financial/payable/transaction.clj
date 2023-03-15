@@ -13,6 +13,7 @@
     [malli.error :as me]
     [xtdb.api :as xtdb]))
 
+
 (defn pull-all-purchase-invoices
   [{:keys [sort-on order limit offset]}]
 

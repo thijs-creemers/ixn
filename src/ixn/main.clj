@@ -11,6 +11,7 @@
     [ixn.financial.views.accounts-api :as accounts-api]
     [ixn.financial.views.accounts-payable :as accounts-payable]
     [ixn.financial.views.accounts-payable-api :as accounts-payable-api]
+    [ixn.financial.views.balance :as balance-views]
     [ixn.frontend.core :refer [htmx]]
     [ixn.state :refer [system]]))
 
@@ -19,6 +20,7 @@
   (route/expand-routes
     (union #{["/htmx.js.min" :get htmx :route-name :htmx]}
            auth-views/routes
+           balance-views/routes
            accounts/routes
            accounts-api/routes
            accounts-payable/routes

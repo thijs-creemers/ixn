@@ -1,6 +1,8 @@
 {:system
  {:web/server
-  {;;:secure-headers                 {:content-security-policy-settings {:object-src "http://localhost:3300/*"}}
+  {:secure-headers                 {:content-security-policy-settings {:default-src "'self';"
+                                                                       :script-src  "'self' 'unsafe-inline';"
+                                                                       :style-src   "'self' unpkg.com 'unsafe-inline';"}}
    :io.pedestal.http/resource-path "/public"
    :io.pedestal.http/type          :jetty
    :io.pedestal.http/join?         false

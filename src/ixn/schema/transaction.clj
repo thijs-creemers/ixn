@@ -65,7 +65,6 @@
    '{:find  [(pull ?trn [*])]
      :where [[?trn :transaction/id _]]}))
 
-
 (defn pull-transaction-by-id [id]
   (xtdb/q
    (xtdb/db (xtdb-node))
@@ -77,9 +76,22 @@
      :where [[?trn :transaction/id ?id]]}
    id))
 
-
 (comment
   (pull-transaction-by-id #uuid"c8879064-69a1-482c-89e7-589488fdbf7f"))
+
+(defn pull-transaction-by-account [account]
+  (xtdb/q
+   (xtdb/db (xtdb-node))
+   '{:find  [(pull ?trn [{:transaction/account [:account/id :transaction/account :account/name]}
+                         :transaction/amount
+                         :transaction/side
+                         :transaction/description])]
+     :in    [?account]
+     :where [[?trn :transaction/account ?account]]}
+   account))
+
+(comment
+  (pull-transaction-by-account "80100"))
 
 (defn fetch-transactions []
   (xtdb/q
@@ -96,7 +108,6 @@
       [?trn :transaction/amount ?amt]
       [?trn :transaction/side ?sid]]
      :order-by [[?id :asc]]}))
-
 
 (defn fetch-transaction-by-id
   [id]
@@ -187,4 +198,3 @@
        :transaction/sub-admin   ""
        :transaction/amount      7.25
        :transaction/side        :debit}])))
-

@@ -1,5 +1,6 @@
 (ns ixn.authentication.views
-  (:require [rum.core :as rum]))
+  (:require [ixn.settings :refer [content-security-policy]]
+            [rum.core :as rum]))
 
 (defn html-doc
   "Return the basic HTML doc."
@@ -34,7 +35,7 @@
   (let [body (rum/render-html (html-doc "Sign In" (login-form)))]
     {:status  200
      :body    body
-     :headers {"Content-Type" "text/html" "Content-Security-Policy" ""}}))
+     :headers {"Content-Type" "text/html" "Content-Security-Policy" content-security-policy}}))
 
 (def routes
   #{["/sign-in" :get sign-in :route-name :sign-in]})

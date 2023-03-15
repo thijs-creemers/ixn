@@ -1,10 +1,28 @@
 (ns ixn.frontend.core
   (:require [ixn.utils :refer [->json]]
-            [io.pedestal.http.content-negotiation :as cn]))
-
+            [io.pedestal.http.content-negotiation :as cn]
+            [rum.core :as rum]))
 
 (def supported-types ["text/html" "application/edn" "application/json" "application/xml" "text/plain"])
 (def content-negociation-interceptor (cn/negotiate-content supported-types))
+
+(rum/defc form-field [name helper-text optional]
+          [:div.measure
+           [:label.f6.b.db.mb2 {:for name} name (when optional [:span.normal.black-60 "(optional)"])]
+           [:input.input-reset.ba.b--black-20.pa2.mb2.db.w-100 {:id name :type "text" :aria-describedby (str name "-desc")}]
+           [:small.f6.black-60.db.mb2 {:id (str name "-desc")} helper-text]])
+
+(rum/defc form
+  [legend field-info]
+  [:div
+   [:div
+    [:form.black-80
+     [:fieldset.ba.b--dotted.bw1
+      [:legend legend]
+      (for [key (keys field-info)]
+        (form-field (name key)
+                    (:description (key field-info))
+                    (:optional (key field-info))))]]]])
 
 (defn htmx [_]
   {:status  200

@@ -184,7 +184,7 @@
   (time (fetch-accounts-by-type :cst))
   (import-accounts-fixture)
   (fetch-accounts-by-summary-level 2)
-
+  (pull-account-by-id "80200")
   (m/validate AccountNumber "40010")
   (m/explain AccountNumber "400100")
   (let [account {:account/id            "800100"

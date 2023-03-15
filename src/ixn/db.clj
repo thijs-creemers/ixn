@@ -31,7 +31,7 @@
   [data]
   (mapv (fn [v]
           [::xt/put (assoc-in v [:xt/id] (uuid))])
-        data))                                              ;:xtdb.tx/put
+        data))
 
 (defn transact!
   "Store a list of maps in XTDB"

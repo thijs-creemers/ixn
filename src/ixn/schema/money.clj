@@ -53,17 +53,19 @@
 (defn mformat
   "Format money into string with currency symbol and a thousand separator."
   [money-value]
-  (let [{:currency/keys [symbol decimals]} ((:money/currency money-value) ic/currencies)
-        value (str (:money/value money-value))
-        dec-part (subs value (- (count value) decimals))
-        int-part (subs value 0 (- (count value) decimals))
-        int-partseparated (->> int-part
-                               reverse
-                               (partition 3 3 "@")
-                               (map (fn [x] (str/replace (str/join (reverse x)) #"@" "")))
-                               reverse
-                               (str/join thousand-separator))]
-    (str symbol " " int-partseparated decimal-separator dec-part)))
+  (if (some? money-value)
+    (let [{:currency/keys [symbol decimals]} ((:money/currency money-value) ic/currencies)
+          value (str (:money/value money-value))
+          dec-part (subs value (- (count value) decimals))
+          int-part (subs value 0 (- (count value) decimals))
+          int-partseparated (->> int-part
+                                 reverse
+                                 (partition 3 3 "@")
+                                 (map (fn [x] (str/replace (str/join (reverse x)) #"@" "")))
+                                 reverse
+                                 (str/join thousand-separator))]
+      (str symbol " " int-partseparated decimal-separator dec-part))
+    "0.00"))
 
 (defn ->money-from-value
   "returns a money value"

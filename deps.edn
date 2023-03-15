@@ -1,60 +1,72 @@
 {:paths    ["src" "test" "resources"]
  :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"]
- :deps     {org.clojure/clojure            {:mvn/version "1.11.1"}
+ :deps     {org.clojure/clojure               {:mvn/version "1.11.1"}
 
             ;; xtdb db
-            com.xtdb/xtdb-core             {:mvn/version "1.23.0"}
-            com.xtdb/xtdb-rocksdb          {:mvn/version "1.23.0"}
+            com.xtdb/xtdb-core                {:mvn/version "1.23.0"}
+            com.xtdb/xtdb-rocksdb             {:mvn/version "1.23.0"}
 
             ;; Full text
             ;juxt/crux-lucene               {:mvn/version "21.06-1.17.1-alpha"}
 
+            ;; RDBMS
+            com.github.seancorfield/next.jdbc {:mvn/version "1.3.862"}
+            org.postgresql/postgresql         {:mvn/version "42.5.4"}
+            ;com.zaxxer/HikariCP               {:mvn/version "4.0.3"}
+
+            ;; Walkable / EQL /PATHON
+            com.wsscode/pathom3               {:mvn/version "2023.01.31-alpha"}
+
             ;; schemas
-            metosin/malli                  {:mvn/version "0.10.1"}
-            com.gfredericks/test.chuck     {:mvn/version "0.2.14"} ;; needed for malli generator regex.
+            metosin/malli                     {:mvn/version "0.10.1"}
+            com.gfredericks/test.chuck        {:mvn/version "0.2.14"} ;; needed for malli generator regex.
 
             ;; API
-            io.pedestal/pedestal.service   {:mvn/version "0.5.10"}
-            io.pedestal/pedestal.route     {:mvn/version "0.5.10"}
+            io.pedestal/pedestal.service      {:mvn/version "0.5.10"}
+            io.pedestal/pedestal.route        {:mvn/version "0.5.10"}
             ;io.pedestal/pedestal.immutant  {:mvn/version "0.5.10"}
-            io.pedestal/pedestal.jetty     {:mvn/version "0.5.10"}
+            io.pedestal/pedestal.jetty        {:mvn/version "0.5.10"}
+            ;ring/ring-core                 {:mvn/version "1.9.2"}
+            ;ring/ring-jetty-adapter        {:mvn/version "1.9.2"}
+            ;metosin/ring-swagger           {:mvn/version "0.26.2"}
+            ;metosin/ring-swagger-ui        {:mvn/version "4.15.5"}
 
             ;; Environment / Setup
-            integrant/integrant            {:mvn/version "0.8.0"}
-            environ/environ                {:mvn/version "1.2.0"}
+            integrant/integrant               {:mvn/version "0.8.0"}
+            environ/environ                   {:mvn/version "1.2.0"}
 
             ;; Libs
-            clj-http/clj-http              {:mvn/version "3.12.3"}
-            metosin/jsonista               {:mvn/version "0.3.7"}
-            metosin/muuntaja               {:mvn/version "0.6.8"}
-            rum/rum                        {:mvn/version "0.12.10"}
-            clj-time/clj-time              {:mvn/version "0.15.2"}
+            clj-http/clj-http                 {:mvn/version "3.12.3"}
+            metosin/jsonista                  {:mvn/version "0.3.7"}
+            metosin/muuntaja                  {:mvn/version "0.6.8"}
+            rum/rum                           {:mvn/version "0.12.10"}
+            clj-time/clj-time                 {:mvn/version "0.15.2"}
 
             ;; auth
             ;one-time/one-time              {:mvn/version "0.8.0"}
-            clj-otp/clj-otp                {:mvn/version "0.1.3"}
-            buddy/buddy-hashers            {:mvn/version "1.8.158"}
+            clj-otp/clj-otp                   {:mvn/version "0.1.3"}
+            buddy/buddy-hashers               {:mvn/version "1.8.158"}
 
             ;; logging:
-            org.clojure/tools.logging      {:mvn/version "1.2.4"}
-            ch.qos.logback/logback-classic {:mvn/version "1.4.5"}
-            ch.qos.logback/logback-core    {:mvn/version "1.4.5"}
-            org.slf4j/slf4j-api            {:mvn/version "2.0.6"}}
+            org.clojure/tools.logging         {:mvn/version "1.2.4"}
+            ch.qos.logback/logback-classic    {:mvn/version "1.4.5"}
+            ch.qos.logback/logback-core       {:mvn/version "1.4.5"}
+            org.slf4j/slf4j-api               {:mvn/version "2.0.6"}}
 
  ;; global aliases are defined in .clojure/.deps.edn
  :aliases  {
-            :run-m   {:main-opts ["-m" "ixn.core"]}
-            :run-x   {:ns-default ixn.core
-                      :exec-fn    -main
-                      :exec-args  {:name "Clojure"}}
-            :build   {:deps       {io.github.clojure/tools.build {:git/tag "v0.9.3" :git/sha "e537cd1"}}
-                      :ns-default build}
+            :run-m {:main-opts ["-m" "ixn.core"]}
+            :run-x {:ns-default ixn.core
+                    :exec-fn    -main
+                    :exec-args  {:name "Clojure"}}
+            :build {:deps       {io.github.clojure/tools.build {:git/tag "v0.9.3" :git/sha "e537cd1"}}
+                    :ns-default build}
             ;:uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "1.2.0"}}
             ;          :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/ixn-0.1.0.jar"]}
-            :test    {:extra-paths ["test"]
-                      :extra-deps  {org.clojure/test.check {:mvn/version "1.1.1"}
-                                    io.github.cognitect-labs/test-runner
-                                    {:git/tag "v0.5.1" :git/sha "dfb30dd"}}}}}
+            :test  {:extra-paths ["test"]
+                    :extra-deps  {org.clojure/test.check {:mvn/version "1.1.1"}
+                                  io.github.cognitect-labs/test-runner
+                                  {:git/tag "v0.5.1" :git/sha "dfb30dd"}}}}}
 
 ;; :test       - run tests with koacha.runner.
 ;; :outdated   - find packages that are outdated $ clj -M:outdated}}
