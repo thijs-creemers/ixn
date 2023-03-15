@@ -82,16 +82,13 @@
 (defn pull-transaction-by-account [account]
   (xtdb/q
    (xtdb/db (xtdb-node))
-   '{:find  [(pull ?trn [{:transaction/account [:account/id :transaction/account :account/name]}
-                         :transaction/amount
-                         :transaction/side
-                         :transaction/description])]
+   '{:find  [(pull ?trn [*])]
      :in    [?account]
      :where [[?trn :transaction/account ?account]]}
    account))
 
 (comment
-  (pull-transaction-by-account "80100"))
+  (pull-transaction-by-account "12010"))
 
 (defn fetch-transactions []
   (xtdb/q

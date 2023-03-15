@@ -27,22 +27,22 @@
 ; pull stored account information
 
 (pco/defresolver
-  transactions
+  transactions-by-account
   [{:keys [:transaction/account]}]
   {::pco/output
-   [:transaction/id
-    :transaction/line
-    :transaction/account
+   [;;:transaction/id
+    ;; :transaction/line
+    ;; :transaction/account
     :transaction/description
-    :transaction/journal
-    :transaction/year
-    :transaction/period
-    :transaction/date
-    :transaction/amount
-    :transaction/sub-admin
-    :transaction/cost-center
-    :transaction/side
-    :transaction/invoice]}
+    ;; :transaction/journal
+    ;; :transaction/year
+    ;; :transaction/period
+    ;; :transaction/date
+    ;; :transaction/amount
+    ;; :transaction/sub-admin
+    ;; :transaction/cost-center
+    :transaction/side]}
+    ;; :transaction/invoice]}
   (pull-transaction-by-account account))
 
 (pco/defresolver
@@ -57,13 +57,13 @@
 
 (def env
   (pci/register
-   [accounts-by-id transactions]))
+   [accounts-by-id transactions-by-account]))
 
 (comment
   (pull-account-by-id "80100")
   (fetch-account-by-id "80100")
   (fetch-accounts)
-  (pull-transaction-by-account "80100")
+  (ffirst (pull-transaction-by-account "80100"))
   ;process needs an environment configurationx
   (p.eql/process
    env
@@ -75,5 +75,5 @@
   (p.eql/process
    env
    {:transaction/account "80100"}
-   [:transaction/id :transaction/line :transaction/amount :transaction/side])
+   [:transaction/description :transaction/side])
   ...)

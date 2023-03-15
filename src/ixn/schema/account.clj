@@ -9,15 +9,15 @@
 
 ;;
 ;; What does debit or credit mean!
-;; +----------------------+----------+----------+
-;; |Kind of account       |  Debit   | Credit   |
-;; +----------------------+----------+----------+
-;; |Asset                 | Increase | Decrease |
-;; |Liability             | Decrease | Increase |
-;; |Income/Revenue        | Decrease | Increase |
-;; |Expense/Cost/Dividend | Increase | Decrease |
-;; |Equity/Capital        | Decrease | Increase |
-;; +----------------------+----------+----------+
+;; +----------------------+----------+----------+------+
+;; |Kind of account       |  Debit   | Credit   |      |
+;; +----------------------+----------+----------+------+
+;; |Asset                 | Increase | Decrease | :ast |
+;; |Liability             | Decrease | Increase | :lia |
+;; |Income/Revenue        | Decrease | Increase | :prf |
+;; |Expense/Cost/Dividend | Increase | Decrease | :cst |
+;; |Equity/Capital        | Decrease | Increase | :ety |
+;; +----------------------+----------+----------+------
 
 ;; Schema definitions
 (def AccountNumber [:re
@@ -25,7 +25,7 @@
                                      :nl "Een rekeningnummer kan 1 to 5 cijfers lang zijn."}}
                     #"^[0-9]{1,5}$"])
 
-(def AccountType [:enum {:title "Account types"} :ast :lia :cst :prf])
+(def AccountType [:enum {:title "Account types"} :ast :ety :lia :cst :prf])
 
 (def SummaryLevel [:and int? [:>= 0] [:<= 4]])
 
