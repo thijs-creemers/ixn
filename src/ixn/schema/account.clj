@@ -16,8 +16,8 @@
 ;; |Liability             | Decrease | Increase | :lia |
 ;; |Income/Revenue        | Decrease | Increase | :prf |
 ;; |Expense/Cost/Dividend | Increase | Decrease | :cst |
-;; |Equity/Capital        | Decrease | Increase | :ety |
-;; +----------------------+----------+----------+------
+;; |equity/capital        | decrease | increase | :ety |
+;; +----------------------+----------+----------+------+
 
 ;; Schema definitions
 (def AccountNumber [:re

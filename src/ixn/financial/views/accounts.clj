@@ -57,8 +57,11 @@
 (defn get-accounts
   [_]
   (let [all-accounts (pull-all-accounts {:sort-on :account/id :order :asc})]
-    {:status 200
-     :body   all-accounts}))
+    (if (= 0 (count all-accounts))
+      {:status 404
+       :body   "No accounts found"}
+      {:status 200
+       :body   all-accounts})))
 
 (defn accounts-refresh [_]
   (let [body (rum/render-html (overview))]

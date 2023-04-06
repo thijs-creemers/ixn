@@ -26,14 +26,13 @@
   (log/info "Started IXN accounting"))
 
 (defn -main [& _]
-  (start-app))
+  (start-app)
 
-
-(comment
+ (comment
   ixn.main/routes
   (start-app)
   (stop-app)
   (num-of-accounts)
   (log/info "Configured logging setup")
   @system
-  ...)
+  ...))

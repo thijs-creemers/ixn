@@ -1,9 +1,10 @@
 (ns ixn.rdbms.playground
   (:require
-    [clojure.tools.reader.edn :as edn]
-    [next.jdbc :as jdbc]
-    [next.jdbc.sql :as sql]
-    [ixn.schema.account :refer [AccountNumber AccountType Account create-account]]))
+   [clojure.pprint :refer [pprint]]
+   [clojure.tools.reader.edn :as edn]
+   [ixn.schema.account :refer [create-account]]
+   [next.jdbc :as jdbc]
+   [next.jdbc.sql :as sql]))
 
 (def db-spec
   {:dbtype   "postgresql"
@@ -22,8 +23,6 @@
     type varchar(32),
     summary_level int)"])
 
-
-
 (comment
   (create-account {:account/id "12000" :account/name "een rekening" :account/type :ast}))
 
@@ -32,7 +31,6 @@
    :name          name
    :type          type
    :summary-level summary-level})
-
 
 (defn import-accounts-fixture
   []
@@ -59,7 +57,6 @@
   (jdbc/execute! datasource account-table)
   (import-accounts-fixture))
 
-
 (comment
   (refresh-account-schema)
   (jdbc/execute! datasource ["create table address (
@@ -68,7 +65,9 @@
     email varchar(255))"])
 
   (sql/get-by-id datasource "account" "80100")
-  (sql/query datasource ["select * from account where summary_level = 0 order by id"])
+  (pprint (sql/query datasource ["select * from account where id like '10%'"]))
+
+  (pprint (sql/query datasource ["select * from account where summary_level = 0 order by id"]))
   (jdbc/execute! datasource ["drop table account"])
   (jdbc/execute! datasource ["drop table address"])
   (jdbc/execute! datasource ["insert into address (name, email) values ('John Doe', 'jodo@johndoe.com')"])
