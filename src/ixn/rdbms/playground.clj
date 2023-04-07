@@ -10,9 +10,9 @@
   {:dbtype   "postgresql"
    :host     "localhost"
    :port     5432
-   :dbname   "ixn-db"
+   :dbname   "ixn"
    :user     "postgres"
-   :password "XMJeQns0QGBfDhIxiDAp"})
+   :password "ixnsecret"})
 
 (def datasource (jdbc/get-datasource db-spec))
 

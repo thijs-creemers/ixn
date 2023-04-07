@@ -15,27 +15,12 @@ services:
     image: postgres:15-alpine
     ports:
       - 5432:5432
-    networks:
-      - ixn
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "ixnsecret"
-      POSTGRES_DB: "ixn"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    env_file:
+      - .env # The name of your environment file (the one at the repository root)
 
   pgadmin:
     image: dpage/pgadmin4:latest
     ports:
       - 5050:80
-    networks:
-      - ixn
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "thijs.creemers@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "2#4Thscr"
-
-volumes:
-  pgdata:
-
-networks:
-  ixn:
+    env_file:
+      - .env # The name of your environment file (the one at the repository root)
