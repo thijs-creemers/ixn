@@ -1,0 +1,5 @@
+[{account-type/id "ast" account-type/name "Asset"}
+ {account-type/id "lia" account-type/name "Liability"}
+ {account-type/id "cst" account-type/name "Expense/Costs/Dividend"}
+ {account-type/id "prf" account-type/name "Income/Revenue"}
+ {account-type/id "ety" account-type/name "Equity/Capital"}]
